@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Forest",
+    "thumbnailURL": "backgrounds/forest.jpg",
+    "backgroundURL": "backgrounds/forest.jpg"
+  },
+  {
+    "title": "Window",
+    "thumbnailURL": "backgrounds/window.jpg",
+    "backgroundURL": "backgrounds/window.jpg"
+  },
+  {
+    "title": "City",
+    "thumbnailURL": "backgrounds/window.jpg",
+    "backgroundURL": "backgrounds/window.jpg"
+  }
+]
