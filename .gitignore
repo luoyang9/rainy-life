@@ -9,6 +9,9 @@
 # production
 /build
 
+# sound files (too large)
+/public/sounds
+
 # misc
 .DS_Store
 .env.local

@@ -1,8 +1,18 @@
 [
   {
-    "title": "Heavy rain"
+    "title": "Heavy rain",
+    "src": "sounds/rain.wav",
+    "volume": 0.5,
+    "author": "inchadney",
+    "source": "https://freesound.org/people/inchadney/sounds/221059/",
+    "license": "Creative Commons Attribution-NonCommerical 3.0"
   },
   {
-    "title": "Thunder"
+    "title": "City night ambience",
+    "src": "sounds/citynight.wav",
+    "volume": 0.5,
+    "author": "vonfleisch",
+    "source": "https://freesound.org/people/vonfleisch/sounds/270881/",
+    "license": "Creative Commons 0"
   }
 ]

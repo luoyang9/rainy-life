@@ -3,6 +3,7 @@ import './App.css';
 
 import Background from './components/Background'
 import ControlPanel from './components/ControlPanel'
+import AudioManager from './AudioManager'
 
 class App extends Component { 
   
@@ -10,7 +11,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      backgroundURL: "backgrounds/forest.jpg"
+      backgroundURL: "backgrounds/forest.jpg",
+      audioManager: new AudioManager()
     }
 
     this.changeBackground = this.changeBackground.bind(this)
@@ -24,7 +26,7 @@ class App extends Component {
     return (
       <div className="App">
         <Background backgroundURL={this.state.backgroundURL} />
-        <ControlPanel changeBackground={this.changeBackground} />
+        <ControlPanel audioManager={this.state.audioManager} changeBackground={this.changeBackground} />
       </div>
     );  
   }

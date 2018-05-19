@@ -15,6 +15,8 @@ class ControlPanel extends Component {
       backgrounds: backgroundsJSON,
       sounds: soundsJSON
     }
+
+    this.props.audioManager.loadClips(this.state.sounds);
   }
 
   render() {
@@ -31,7 +33,7 @@ class ControlPanel extends Component {
               {
                 this.state.sounds.length > 0 && this.state.sounds.map(sound => {
                   return (
-                    <div key={sound.title}>
+                    <div onClick={() => this.props.audioManager.playPauseClip(sound.title)} key={sound.title}>
                       <p>{sound.title}</p>
                     </div>
                   )
