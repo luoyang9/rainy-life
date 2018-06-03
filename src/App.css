@@ -13,3 +13,26 @@
 .App-title {
   font-size: 1.5em;
 }
+
+.App-settings {
+  color: white;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  transition: all 0.15s ease;
+  cursor: pointer;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.App-settingsShow {
+  -webkit-transform: rotate(25deg);
+      -ms-transform: rotate(25deg);
+          transform: rotate(25deg);
+}

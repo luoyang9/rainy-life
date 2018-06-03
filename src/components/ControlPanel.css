@@ -1,14 +1,33 @@
 .ControlPanel {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: 40px;
   margin: 5px;
-  background-color: rgba(12, 12, 12, 0.7);
+  background-color: rgba(12, 12, 12, 0.9);
   color: #b5b5b5;
   width: calc(100% - 10px);
   height: calc(100% - 10px);
   max-width: 600px;
   max-height: 600px;
+  border: 0px solid black;
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
+
+  -webkit-transform: translateY(10px);
+      -ms-transform: translateY(10px);
+          transform: translateY(10px);
+
+  transition: all 0.15s ease;
+}
+
+.ControlPanel-show {
+  opacity: 1;
+  pointer-events: all;
+  
+  -webkit-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+          transform: translateY(0px);
 }
 
 .ControlPanel-scroll {

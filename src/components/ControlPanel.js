@@ -20,8 +20,10 @@ class ControlPanel extends Component {
   }
 
   render() {
+    const className = this.props.className;
+
     return (
-      <div className="ControlPanel">
+      <div className={"ControlPanel " + className}>
         <Tabs>
           <TabList>
             <Tab>Sounds</Tab>
