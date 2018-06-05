@@ -3,6 +3,7 @@ import './App.css';
 
 import Background from './components/Background'
 import ControlPanel from './components/ControlPanel'
+import AudioControl from './components/AudioControl'
 import AudioManager from './AudioManager'
 
 class App extends Component { 
@@ -41,6 +42,7 @@ class App extends Component {
       <div className="App">
         <Background backgroundURL={this.state.backgroundURL} />
         <h1 className="App-header">rainy life</h1>
+        <AudioControl />
         <i onClick={this.toggleSettings} className={"material-icons App-settings " + this.state.settingsClass}>settings</i>
         <ControlPanel className={this.state.controlPanelClass} audioManager={this.state.audioManager} changeBackground={this.changeBackground} />
       </div>

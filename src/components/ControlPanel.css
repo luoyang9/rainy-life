@@ -7,8 +7,8 @@
   color: #b5b5b5;
   width: calc(100% - 10px);
   height: calc(100% - 10px);
-  max-width: 600px;
-  max-height: 600px;
+  max-width: 550px;
+  max-height: 550px;
   border: 0px solid black;
   border-radius: 3px;
   opacity: 0;
@@ -31,7 +31,7 @@
 }
 
 .ControlPanel-scroll {
-  max-height: 566px;
+  max-height: 516px;
 }
 
 .ControlPanel-thumbnail {
