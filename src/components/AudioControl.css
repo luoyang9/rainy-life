@@ -16,19 +16,30 @@
 }
 
 .AudioControl-volume {
-    font-size: 30px;
+    font-size: 25px;
     display: inline-block;
 }
 
 .AudioControl-slider {
-    width: 100px;
-    height: 30px;
+    width: 120px;
+    height: 25px;
     margin-left: 10px;
     display: flex;
     justify-content: center;
     align-items: center; 
 }
 
+.rc-slider-track {
+    background-color: white;  
+}
+
+.rc-slider-rail {
+    background-color: #555555;
+}   
+
 .rc-slider-handle {
     margin-top: 0px;
+    border: solid 0px white;
+    width: 12px;
+    height: 12px;
 }

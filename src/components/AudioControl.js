@@ -10,7 +10,8 @@ class AudioControl extends Component {
     super(props)
 
     this.state = {
-        volume: this.props.audioManager.getGlobalVolume()
+        volume: this.props.audioManager.getGlobalVolume(),
+        prevVolume: 0
     }
 
     this.volumeChange = this.volumeChange.bind(this)
