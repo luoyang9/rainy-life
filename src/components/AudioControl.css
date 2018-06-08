@@ -4,6 +4,7 @@
     bottom: 15px;
     color: white;
     cursor: pointer;
+    display: flex;
 
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -15,9 +16,22 @@
 }
 
 .AudioControl-play {
-    font-size: 50px;
+    font-size: 35px;
+    display: inline-block;
 }
 
 .AudioControl-pause {
-    font-size: 50px;
+    font-size: 35px;
+    display: inline-block;
+}
+
+.AudioControl-volume {
+    font-size: 30px;
+    display: inline-block;
+}
+
+.AudioControl-slider {
+    display: inline-block;
+    width: 100px;
+    height: 35px;
 }

@@ -42,7 +42,7 @@ class App extends Component {
       <div className="App">
         <Background backgroundURL={this.state.backgroundURL} />
         <h1 className="App-header">rainy life</h1>
-        <AudioControl />
+        <AudioControl audioManager={this.state.audioManager} />
         <i onClick={this.toggleSettings} className={"material-icons App-settings " + this.state.settingsClass}>settings</i>
         <ControlPanel className={this.state.controlPanelClass} audioManager={this.state.audioManager} changeBackground={this.changeBackground} />
       </div>

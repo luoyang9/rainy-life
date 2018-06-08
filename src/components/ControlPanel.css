@@ -5,8 +5,8 @@
   margin: 15px;
   background-color: rgba(12, 12, 12, 0.9);
   color: #b5b5b5;
-  width: calc(100% - 10px);
-  height: calc(100% - 10px);
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
   max-width: 550px;
   max-height: 550px;
   border: 0px solid black;
