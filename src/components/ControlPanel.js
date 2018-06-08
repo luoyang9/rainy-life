@@ -48,11 +48,11 @@ class ControlPanel extends Component {
               {
                 this.state.backgrounds.length > 0 && this.state.backgrounds.map(background => {
                   return (
-                    <div key={background.title}>
+                    <div key={background.title} className="ControlPanel-cell">
                       <div onClick={() => this.props.changeBackground(background.backgroundURL)} className="ControlPanel-thumbnail-container">
                         <img alt={background.title} src={background.thumbnailURL} className="ControlPanel-thumbnail" />
                       </div>
-                      <p>{background.title}</p>
+                      <p className="ControlPanel-thumbnail-source">Source here</p>
                     </div>
                   )
                 })

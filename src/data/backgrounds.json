@@ -10,8 +10,18 @@
     "backgroundURL": "backgrounds/window.jpg"
   },
   {
-    "title": "City",
-    "thumbnailURL": "backgrounds/window.jpg",
-    "backgroundURL": "backgrounds/window.jpg"
+    "title": "Night City",
+    "thumbnailURL": "backgrounds/night_city.jpg",
+    "backgroundURL": "backgrounds/night_city.jpg"
+  },
+  {
+    "title": "Night Window",
+    "thumbnailURL": "backgrounds/night_window.jpg",
+    "backgroundURL": "backgrounds/night_window.jpg"
+  },
+  {
+    "title": "Italy",
+    "thumbnailURL": "backgrounds/italy.jpg",
+    "backgroundURL": "backgrounds/italy.jpg"
   }
 ]

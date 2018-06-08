@@ -31,7 +31,16 @@
 }
 
 .ControlPanel-scroll {
-  max-height: 516px;
+  max-height: 506px;
+  padding: 0 5%;
+}
+
+.ControlPanel-cell {
+  width: 45%;
+  float: left;
+  height: 23%;
+  margin: 2.5%;
+  text-align: center;
 }
 
 .ControlPanel-thumbnail {
@@ -46,8 +55,12 @@
   position: relative;
   width: 100%;
   padding-bottom: 50%;
-  float: left;
   height: 0;
+}
+
+.ControlPanel-thumbnail-source {
+  width: 100%;
+  margin: 15px 0;
 }
 
 .react-tabs__tab-list {
