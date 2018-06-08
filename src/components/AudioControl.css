@@ -15,23 +15,20 @@
                                 supported by Chrome and Opera */
 }
 
-.AudioControl-play {
-    font-size: 35px;
-    display: inline-block;
-}
-
-.AudioControl-pause {
-    font-size: 35px;
-    display: inline-block;
-}
-
 .AudioControl-volume {
     font-size: 30px;
     display: inline-block;
 }
 
 .AudioControl-slider {
-    display: inline-block;
     width: 100px;
-    height: 35px;
+    height: 30px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.rc-slider-handle {
+    margin-top: 0px;
 }

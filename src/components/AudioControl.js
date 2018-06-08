@@ -10,22 +10,11 @@ class AudioControl extends Component {
     super(props)
 
     this.state = {
-        playing: false,
         volume: this.props.audioManager.getGlobalVolume()
     }
 
-    this.togglePlay = this.togglePlay.bind(this)
     this.volumeChange = this.volumeChange.bind(this)
-  }
-
-  togglePlay() {
-      if(this.state.playing) {
-          this.setState({playing: false})
-          this.props.audioManager.playPauseGlobal(false)
-      } else {
-          this.setState({playing: true})
-          this.props.audioManager.playPauseGlobal(true)
-      }
+    this.toggleMute = this.toggleMute.bind(this)
   }
 
   volumeChange(vol) {
@@ -33,20 +22,23 @@ class AudioControl extends Component {
     this.setState({volume: this.props.audioManager.getGlobalVolume()})
   }
 
+  toggleMute() {
+    if(this.state.volume != 0) {
+      this.setState({volume: 0, prevVolume: this.state.volume})
+    } else {
+      this.setState({volume: this.state.prevVolume})
+    }
+  }
+
   render() {
     return (
       <div className="AudioControl">
         {
-            this.state.playing 
-                ? <i onClick={this.togglePlay} className="material-icons AudioControl-play">pause</i>
-                : <i onClick={this.togglePlay} className="material-icons AudioControl-pause">play_arrow</i>
-        }
-        {
           this.state.volume > 0.5 ? 
-            <i className="material-icons AudioControl-volume">volume_up</i>
+            <i onClick={this.toggleMute} className="material-icons AudioControl-volume">volume_up</i>
           : this.state.volume > 0 ?
-            <i className="material-icons AudioControl-volume">volume_down</i>
-          : <i className="material-icons AudioControl-volume">volume_off</i>
+            <i onClick={this.toggleMute} className="material-icons AudioControl-volume">volume_down</i>
+          : <i onClick={this.toggleMute} className="material-icons AudioControl-volume">volume_off</i>
         }
         <Slider className="AudioControl-slider" value={this.state.volume * 100} onChange={this.volumeChange} />
       </div>
