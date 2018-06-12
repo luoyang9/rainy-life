@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Slider from 'rc-slider/lib/Slider';
+import 'rc-slider/assets/index.css';
 import 'simplebar';
 import 'simplebar/dist/simplebar.css';
 import './ControlPanel.css';
@@ -11,12 +13,39 @@ class ControlPanel extends Component {
   constructor(props) {
     super(props)
 
+    const volumes = {}
+    const playing = {}
+    if(soundsJSON.length > 0) {
+      soundsJSON.forEach(sound => {
+        volumes[sound.title] = 1;
+        playing[sound.title] = false;
+      })
+    }
+
     this.state = {
       backgrounds: backgroundsJSON,
-      sounds: soundsJSON
+      sounds: soundsJSON,
+      volumes: volumes,
+      playing: playing
     }
 
     this.props.audioManager.loadClips(this.state.sounds);
+    
+    this.volumeChange = this.volumeChange.bind(this);
+    this.toggleClip = this.toggleClip.bind(this);
+  }
+
+  toggleClip(title) {
+    this.props.audioManager.playPauseClip(title)
+    const playing = this.state.playing;
+    playing[title] = !playing[title]
+    this.setState({playing: playing})
+  }
+
+  volumeChange(title, val) {
+    const volumes = this.state.volumes;
+    volumes[title] = val / 100;
+    this.setState({volumes: volumes});
   }
 
   render() {
@@ -35,8 +64,17 @@ class ControlPanel extends Component {
               {
                 this.state.sounds.length > 0 && this.state.sounds.map(sound => {
                   return (
-                    <div onClick={() => this.props.audioManager.playPauseClip(sound.title)} key={sound.title}>
-                      <p>{sound.title}</p>
+                    <div className="ControlPanel-cell" key={sound.title}>
+                      <div className="ControlPanel-thumbnail-container">
+                        <img alt={sound.title} src={sound.thumbnailURL} className="ControlPanel-thumbnail" />
+                        <div className="ControlPanel-sound-container">
+                          <p className="ControlPanel-sound-title">{sound.title}</p>
+                          <i onClick={() => this.toggleClip(sound.title)} className="material-icons ControlPanel-sound-play">
+                            { this.state.playing[sound.title] ? "pause" : "play_arrow" }
+                          </i>
+                          <Slider className="ControlPanel-sound-slider" value={this.state.volumes[sound.title] * 100} onChange={val => this.volumeChange(sound.title, val)} />
+                        </div>
+                      </div>
                     </div>
                   )
                 })

@@ -2,6 +2,7 @@
   {
     "title": "Heavy rain",
     "src": "sounds/rain.wav",
+    "thumbnailURL": "backgrounds/window.jpg",
     "volume": 0.5,
     "author": "inchadney",
     "source": "https://freesound.org/people/inchadney/sounds/221059/",
@@ -10,6 +11,61 @@
   {
     "title": "City night ambience",
     "src": "sounds/citynight.wav",
+    "thumbnailURL": "backgrounds/window.jpg",
+    "volume": 0.5,
+    "author": "vonfleisch",
+    "source": "https://freesound.org/people/vonfleisch/sounds/270881/",
+    "license": "Creative Commons 0"
+  },
+  {
+    "title": "City night ambience",
+    "src": "sounds/citynight.wav",
+    "thumbnailURL": "backgrounds/window.jpg",
+    "volume": 0.5,
+    "author": "vonfleisch",
+    "source": "https://freesound.org/people/vonfleisch/sounds/270881/",
+    "license": "Creative Commons 0"
+  },
+  {
+    "title": "City night ambience",
+    "src": "sounds/citynight.wav",
+    "thumbnailURL": "backgrounds/window.jpg",
+    "volume": 0.5,
+    "author": "vonfleisch",
+    "source": "https://freesound.org/people/vonfleisch/sounds/270881/",
+    "license": "Creative Commons 0"
+  },
+  {
+    "title": "City night ambience",
+    "src": "sounds/citynight.wav",
+    "thumbnailURL": "backgrounds/window.jpg",
+    "volume": 0.5,
+    "author": "vonfleisch",
+    "source": "https://freesound.org/people/vonfleisch/sounds/270881/",
+    "license": "Creative Commons 0"
+  },
+  {
+    "title": "City night ambience",
+    "src": "sounds/citynight.wav",
+    "thumbnailURL": "backgrounds/window.jpg",
+    "volume": 0.5,
+    "author": "vonfleisch",
+    "source": "https://freesound.org/people/vonfleisch/sounds/270881/",
+    "license": "Creative Commons 0"
+  },
+  {
+    "title": "City night ambience",
+    "src": "sounds/citynight.wav",
+    "thumbnailURL": "backgrounds/window.jpg",
+    "volume": 0.5,
+    "author": "vonfleisch",
+    "source": "https://freesound.org/people/vonfleisch/sounds/270881/",
+    "license": "Creative Commons 0"
+  },
+  {
+    "title": "City night ambience",
+    "src": "sounds/citynight.wav",
+    "thumbnailURL": "backgrounds/window.jpg",
     "volume": 0.5,
     "author": "vonfleisch",
     "source": "https://freesound.org/people/vonfleisch/sounds/270881/",
