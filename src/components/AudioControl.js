@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Howler } from 'howler';
 import Slider from 'rc-slider/lib/Slider';
 import 'rc-slider/assets/index.css';
 import './AudioControl.css';
@@ -24,9 +23,11 @@ class AudioControl extends Component {
   }
 
   toggleMute() {
-    if(this.state.volume != 0) {
+    if(this.state.volume !== 0) {
+      this.props.audioManager.setGlobalVolume(0)
       this.setState({volume: 0, prevVolume: this.state.volume})
     } else {
+      this.props.audioManager.setGlobalVolume(this.state.prevVolume)
       this.setState({volume: this.state.prevVolume})
     }
   }

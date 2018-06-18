@@ -17,7 +17,7 @@ class ControlPanel extends Component {
     const playing = {}
     if(soundsJSON.length > 0) {
       soundsJSON.forEach(sound => {
-        volumes[sound.title] = 1;
+        volumes[sound.title] = 0.5;
         playing[sound.title] = false;
       })
     }
@@ -36,7 +36,7 @@ class ControlPanel extends Component {
   }
 
   toggleClip(title) {
-    this.props.audioManager.playPauseClip(title)
+    this.props.audioManager.playPauseClip(title, this.state.volumes[title])
     const playing = this.state.playing;
     playing[title] = !playing[title]
     this.setState({playing: playing})
@@ -46,6 +46,7 @@ class ControlPanel extends Component {
     const volumes = this.state.volumes;
     volumes[title] = val / 100;
     this.setState({volumes: volumes});
+    this.props.audioManager.setClipVolume(title, this.state.volumes[title])
   }
 
   render() {

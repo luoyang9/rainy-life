@@ -18,20 +18,26 @@ export default class AudioManager {
     });
   }
 
-  playPauseClip(title) {
+  playPauseClip(title, vol) {
     if(this.instances.hasOwnProperty(title)) {
       if(this.sounds[title].playing(this.instances[title])) {
         this.pauseClip(title)
       } else {
+        this.setClipVolume(vol)
         this.resumeClip(title)
       }
     } else {
+      this.setClipVolume(vol)
       this.playClip(title)
     }
   }
 
   pauseClip(title) {
     this.sounds[title].pause(this.instances[title]);
+  }
+
+  setClipVolume(title, vol) {
+    this.sounds[title].volume(vol, this.instances[title]);
   }
 
   resumeClip(title) {
