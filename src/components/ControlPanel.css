@@ -72,6 +72,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   color: white;
+  cursor: default;
 }
 
 .ControlPanel-sound-title {

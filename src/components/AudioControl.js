@@ -39,7 +39,7 @@ class AudioControl extends Component {
           this.state.volume > 0.5 ? 
             <i onClick={this.toggleMute} className="material-icons AudioControl-volume">volume_up</i>
           : this.state.volume > 0 ?
-            <i onClick={this.toggleMute} className="material-icons AudioControl-volume">volume_down</i>
+            <i style={{position: "relative", right: 2}} onClick={this.toggleMute} className="material-icons AudioControl-volume">volume_down</i>
           : <i onClick={this.toggleMute} className="material-icons AudioControl-volume">volume_off</i>
         }
         <Slider className="AudioControl-slider" value={this.state.volume * 100} onChange={this.volumeChange} />
