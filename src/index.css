@@ -5,6 +5,7 @@
 
 body {
   font-family: "Helvetica Neue", sans-serif;
+  background-color: black;
 }
 
 html, body, #root {

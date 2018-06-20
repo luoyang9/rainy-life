@@ -3,6 +3,11 @@
   height: 100%;
   width: 100%;
   z-index: -1;
-  -webkit-transition: background-image 0.2s ease-in-out;
-  transition: background-image 0.2s ease-in-out;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s ease-out;
+  transition: opacity 0.2s ease-out;
+}
+
+.Background-show {
+  opacity: 1;
 }

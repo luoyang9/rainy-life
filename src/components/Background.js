@@ -1,18 +1,34 @@
 import React, { Component } from 'react';
 import './Background.css';
+import backgroundsJSON from '../data/backgrounds.json';
 
 class Background extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      backgrounds: backgroundsJSON
+    }
+  }
   
   render() {
-    const backgroundStyle = {
-      backgroundImage: `url(${this.props.backgroundURL})`,
-      backgroundPosition: "center",
-      backgroundSize: "cover",
-      backgroundRepeat: "no-repeat"
-    }
-
     return (
-      <div className="Background" style={backgroundStyle}>
+      <div>
+        {
+          this.state.backgrounds.length > 0 && this.state.backgrounds.map(background => {
+            return <div 
+              key={background.title}
+              className={this.props.activeBackground === background.title ? "Background Background-show" : "Background"} 
+              style={{
+                backgroundImage: `url(${background.backgroundURL})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat"
+              }}>
+            </div>
+          })
+        }
       </div>
     );  
   }

@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      backgroundURL: "backgrounds/forest.jpg",
+      activeBackground: "Forest",
       audioManager: new AudioManager(),
       controlPanelClass: "",
       settingsClass: ""
@@ -22,8 +22,8 @@ class App extends Component {
     this.toggleSettings = this.toggleSettings.bind(this)
   }
 
-  changeBackground(backgroundURL) {
-    this.setState({backgroundURL: backgroundURL});
+  changeBackground(title) {
+    this.setState({activeBackground: title});
   }
 
   toggleSettings() {
@@ -40,7 +40,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Background backgroundURL={this.state.backgroundURL} />
+        <Background activeBackground={this.state.activeBackground} />
         <h1 className="App-header">rainy life</h1>
         <AudioControl audioManager={this.state.audioManager} />
         <i onClick={this.toggleSettings} className={"material-icons App-settings " + this.state.settingsClass}>settings</i>
