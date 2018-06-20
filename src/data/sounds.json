@@ -1,20 +1,18 @@
 [
   {
-    "title": "Heavy rain",
+    "title": "Moderate Rain",
     "src": "sounds/rain.wav",
     "thumbnailURL": "backgrounds/window.jpg",
     "volume": 0.5,
-    "author": "inchadney",
-    "source": "https://freesound.org/people/inchadney/sounds/221059/",
-    "license": "Creative Commons Attribution-NonCommerical 3.0"
+    "author": "InspectorJ",
+    "source": "https://freesound.org/people/InspectorJ/sounds/401275/"
   },
   {
-    "title": "City night ambience",
-    "src": "sounds/citynight.wav",
+    "title": "Rain On Window",
+    "src": "sounds/window.wav",
     "thumbnailURL": "backgrounds/window.jpg",
     "volume": 0.5,
-    "author": "vonfleisch",
-    "source": "https://freesound.org/people/vonfleisch/sounds/270881/",
-    "license": "Creative Commons 0"
+    "author": "InspectorJ",
+    "source": "https://freesound.org/people/InspectorJ/sounds/346642/"
   }
 ]
