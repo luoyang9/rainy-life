@@ -23,11 +23,11 @@ export default class AudioManager {
       if(this.sounds[title].playing(this.instances[title])) {
         this.pauseClip(title)
       } else {
-        this.setClipVolume(vol)
+        this.setClipVolume(title, vol)
         this.resumeClip(title)
       }
     } else {
-      this.setClipVolume(vol)
+      this.setClipVolume(title, vol)
       this.playClip(title)
     }
   }
