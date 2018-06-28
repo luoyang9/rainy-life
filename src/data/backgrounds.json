@@ -2,17 +2,21 @@
   {
     "title": "Forest",
     "thumbnailURL": "thumbnails/forest.jpg",
-    "backgroundURL": "backgrounds/forest.jpg"
+    "backgroundURL": "backgrounds/forest.jpg",
+    "attributionText": "Photo by Jim Bendon",
+    "attributionURL": "https://www.flickr.com/photos/77524419@N03/6946368710"
   },
   {
     "title": "Window",
     "thumbnailURL": "thumbnails/window.jpg",
-    "backgroundURL": "backgrounds/window.jpg"
+    "backgroundURL": "backgrounds/window.jpg",
+    "attributionText": "Photo by a.dombrowski",
+    "attributionURL": "https://www.flickr.com/photos/adombrowski/6000780190/"
   },
   {
     "title": "Night City",
     "thumbnailURL": "thumbnails/night_city.jpg",
-    "backgroundURL": "backgrounds/night_city.jpg"
+    "backgroundURL": "backgrounds/night_city.jpg",
   },
   {
     "title": "Night Window",
