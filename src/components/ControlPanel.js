@@ -107,14 +107,14 @@ class ControlPanel extends Component {
                       </div>
                       <p 
                         className={
-                          "ControlPanel-thumbnail-title" + (this.state.thumbnailHover == background.title ? " ControlPanel-thumbnail-title-hover" : "")
+                          "ControlPanel-thumbnail-title" + (this.state.thumbnailHover === background.title ? " ControlPanel-thumbnail-title-hover" : "")
                         }
                       >{background.title}</p>
                       <a
                         target="_blank"
                         href={background.attributionURL} 
                         className={
-                          "ControlPanel-thumbnail-source" + (this.state.thumbnailHover == background.title ? " ControlPanel-thumbnail-source-hover" : "")
+                          "ControlPanel-thumbnail-source" + (this.state.thumbnailHover === background.title ? " ControlPanel-thumbnail-source-hover" : "")
                         }
                       >{background.attributionText}</a>
                     </div>
