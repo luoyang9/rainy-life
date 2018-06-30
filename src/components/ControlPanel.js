@@ -26,13 +26,16 @@ class ControlPanel extends Component {
       backgrounds: backgroundsJSON,
       sounds: soundsJSON,
       volumes: volumes,
-      playing: playing
+      playing: playing,
+      thumbnailHover: ""
     }
 
     this.props.audioManager.loadClips(this.state.sounds);
     
     this.volumeChange = this.volumeChange.bind(this);
     this.toggleClip = this.toggleClip.bind(this);
+    this.onThumbnailEnter = this.onThumbnailEnter.bind(this);
+    this.onThumbnailExit = this.onThumbnailExit.bind(this);
   }
 
   toggleClip(title) {
@@ -47,6 +50,14 @@ class ControlPanel extends Component {
     volumes[title] = val / 100;
     this.setState({volumes: volumes});
     this.props.audioManager.setClipVolume(title, this.state.volumes[title])
+  }
+
+  onThumbnailEnter(title) {
+    this.setState({thumbnailHover: title})
+  }
+
+  onThumbnailExit() {
+    this.setState({thumbnailHover: ""})
   }
 
   render() {
@@ -87,11 +98,25 @@ class ControlPanel extends Component {
               {
                 this.state.backgrounds.length > 0 && this.state.backgrounds.map(background => {
                   return (
-                    <div key={background.title} className="ControlPanel-cell">
+                    <div key={background.title} 
+                      onMouseEnter={() => this.onThumbnailEnter(background.title)}
+                      onMouseLeave={this.onThumbnailExit}
+                      className="ControlPanel-cell">
                       <div onClick={() => this.props.changeBackground(background.title)} className="ControlPanel-thumbnail-container">
                         <img alt={background.title} src={background.thumbnailURL} className="ControlPanel-thumbnail" />
                       </div>
-                      <p className="ControlPanel-thumbnail-source">Source here</p>
+                      <p 
+                        className={
+                          "ControlPanel-thumbnail-title" + (this.state.thumbnailHover == background.title ? " ControlPanel-thumbnail-title-hover" : "")
+                        }
+                      >{background.title}</p>
+                      <a
+                        target="_blank"
+                        href={background.attributionURL} 
+                        className={
+                          "ControlPanel-thumbnail-source" + (this.state.thumbnailHover == background.title ? " ControlPanel-thumbnail-source-hover" : "")
+                        }
+                      >{background.attributionText}</a>
                     </div>
                   )
                 })

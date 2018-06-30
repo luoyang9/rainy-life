@@ -4,28 +4,34 @@
     "thumbnailURL": "thumbnails/forest.jpg",
     "backgroundURL": "backgrounds/forest.jpg",
     "attributionText": "Photo by Jim Bendon",
-    "attributionURL": "https://www.flickr.com/photos/77524419@N03/6946368710"
+    "attributionURL": "https://flic.kr/p/bzPXpL"
   },
   {
     "title": "Window",
     "thumbnailURL": "thumbnails/window.jpg",
     "backgroundURL": "backgrounds/window.jpg",
     "attributionText": "Photo by a.dombrowski",
-    "attributionURL": "https://www.flickr.com/photos/adombrowski/6000780190/"
+    "attributionURL": "https://flic.kr/p/a9gyTq"
   },
   {
     "title": "Night City",
     "thumbnailURL": "thumbnails/night_city.jpg",
     "backgroundURL": "backgrounds/night_city.jpg",
+    "attributionText": "Photo by Steven Pisano",
+    "attributionURL": "https://flic.kr/p/G5u1Yu"
   },
   {
     "title": "Night Window",
     "thumbnailURL": "thumbnails/night_window.jpg",
-    "backgroundURL": "backgrounds/night_window.jpg"
+    "backgroundURL": "backgrounds/night_window.jpg",
+    "attributionText": "Photo by Steven Pisano",
+    "attributionURL": "https://flic.kr/p/G5u1Yu"
   },
   {
     "title": "Italy",
     "thumbnailURL": "thumbnails/italy.jpg",
-    "backgroundURL": "backgrounds/italy.jpg"
+    "backgroundURL": "backgrounds/italy.jpg",
+    "attributionText": "Photo by Riccardo Cuppini",
+    "attributionURL": "https://flic.kr/p/nfnzad"
   }
 ]
