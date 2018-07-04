@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Slider from 'rc-slider/lib/Slider';
 import 'rc-slider/assets/index.css';
-import 'simplebar';
-import 'simplebar/dist/simplebar.css';
 import './ControlPanel.css';
 import backgroundsJSON from '../data/backgrounds.json';
 import soundsJSON from '../data/sounds.json';
@@ -72,7 +70,7 @@ class ControlPanel extends Component {
           </TabList>
       
           <TabPanel>
-            <div className="ControlPanel-scroll" data-simplebar>
+            <div className="ControlPanel-scroll">
               {
                 this.state.sounds.length > 0 && this.state.sounds.map(sound => {
                   return (
@@ -94,7 +92,7 @@ class ControlPanel extends Component {
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="ControlPanel-scroll" data-simplebar>
+            <div className="ControlPanel-scroll">
               {
                 this.state.backgrounds.length > 0 && this.state.backgrounds.map(background => {
                   return (

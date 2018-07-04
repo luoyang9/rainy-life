@@ -10,8 +10,7 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-scripts": "1.1.4",
-    "react-tabs": "^2.2.2",
-    "simplebar": "^2.6.1"
+    "react-tabs": "^2.2.2"
   },
   "scripts": {
     "predeploy": "npm run build",
