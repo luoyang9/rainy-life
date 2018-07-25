@@ -1,18 +1,50 @@
 [
   {
-    "title": "Moderate Rain",
-    "src": "sounds/rain.wav",
-    "thumbnailURL": "backgrounds/window.jpg",
-    "volume": 0.5,
+    "title": "Rain",
+    "src": "sounds/rain.ogg",
+    "thumbnailURL": "thumbnails/rain.jpg",
+    "volume": 1,
     "author": "InspectorJ",
     "source": "https://freesound.org/people/InspectorJ/sounds/401275/"
   },
   {
     "title": "Rain On Window",
-    "src": "sounds/window.wav",
-    "thumbnailURL": "backgrounds/window.jpg",
-    "volume": 0.5,
+    "src": "sounds/window.ogg",
+    "thumbnailURL": "thumbnails/rain_window.jpg",
+    "volume": 1,
     "author": "InspectorJ",
     "source": "https://freesound.org/people/InspectorJ/sounds/346642/"
+  },
+  {
+    "title": "Rain On Roof",
+    "src": "sounds/rain_roof.ogg",
+    "thumbnailURL": "thumbnails/rain_roof.jpg",
+    "volume": 1,
+    "author": "",
+    "source": ""
+  },
+  {
+    "title": "Thunderstorm",
+    "src": "sounds/thunderstorm.ogg",
+    "thumbnailURL": "thumbnails/thunderstorm.jpg",
+    "volume": 1,
+    "author": "",
+    "source": ""
+  },
+  {
+    "title": "City",
+    "src": "sounds/city_day.ogg",
+    "thumbnailURL": "thumbnails/city_day.jpg",
+    "volume": 1,
+    "author": "",
+    "source": ""
+  },
+  {
+    "title": "Fire Crackling",
+    "src": "sounds/fire.ogg",
+    "thumbnailURL": "thumbnails/fire.jpg",
+    "volume": 1,
+    "author": "",
+    "source": ""
   }
 ]

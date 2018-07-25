@@ -33,5 +33,12 @@
     "backgroundURL": "backgrounds/italy.jpg",
     "attributionText": "Photo by Riccardo Cuppini",
     "attributionURL": "https://flic.kr/p/nfnzad"
+  },
+  {
+    "title": "Plant",
+    "thumbnailURL": "thumbnails/plant.jpg",
+    "backgroundURL": "backgrounds/plant.jpg",
+    "attributionText": "Photo by Matthew Grapengieser",
+    "attributionURL": "https://flic.kr/p/o7znFp"
   }
 ]

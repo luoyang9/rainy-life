@@ -15,7 +15,7 @@ class ControlPanel extends Component {
     const playing = {}
     if(soundsJSON.length > 0) {
       soundsJSON.forEach(sound => {
-        volumes[sound.title] = 0.5;
+        volumes[sound.title] = sound.volume;
         playing[sound.title] = false;
       })
     }
