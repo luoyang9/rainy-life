@@ -14,19 +14,25 @@ class App extends Component {
 
     this.state = {
       activeBackground: "Forest",
+      url: "",
       audioManager: new AudioManager(),
-      controlPanelClass: "",
+      controlPanelClass: "ControlPanel-show",
       MusicPanelClass: "",
-      settingsClass: ""
+      settingsClass: "App-settingsShow"
     }
 
     this.changeBackground = this.changeBackground.bind(this)
+    this.setCustomBackground = this.setCustomBackground.bind(this)
     this.toggleSettings = this.toggleSettings.bind(this)
     this.toggleMusic = this.toggleMusic.bind(this)
   }
 
   changeBackground(title) {
-    this.setState({activeBackground: title});
+    this.setState({activeBackground: title, url: ""});
+  }
+
+  setCustomBackground(url) {
+    this.setState({url: url, activeBackground: ""})
   }
 
   toggleSettings() {
@@ -51,11 +57,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Background activeBackground={this.state.activeBackground} />
+        <Background activeBackground={this.state.activeBackground} url={this.state.url} />
         <h1 className="App-header">rainy life</h1>
         <AudioControl audioManager={this.state.audioManager} />
         <i onClick={this.toggleSettings} className={"material-icons App-settings " + this.state.settingsClass}>settings</i>
-        <ControlPanel className={this.state.controlPanelClass} audioManager={this.state.audioManager} changeBackground={this.changeBackground} />
+        <ControlPanel className={this.state.controlPanelClass} 
+          audioManager={this.state.audioManager} 
+          changeBackground={this.changeBackground}
+          setCustomBackground={this.setCustomBackground} />
         <i onClick={this.toggleMusic} className="material-icons App-music">library_music</i>
         <MusicPanel className={this.state.MusicPanelClass} />
       </div>

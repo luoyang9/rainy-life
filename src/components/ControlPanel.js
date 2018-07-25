@@ -25,7 +25,9 @@ class ControlPanel extends Component {
       sounds: soundsJSON,
       volumes: volumes,
       playing: playing,
-      thumbnailHover: ""
+      thumbnailHover: "",
+      customBackgroundInput: "",
+      customBackgroundError: ""
     }
 
     this.props.audioManager.loadClips(this.state.sounds);
@@ -34,6 +36,9 @@ class ControlPanel extends Component {
     this.toggleClip = this.toggleClip.bind(this);
     this.onThumbnailEnter = this.onThumbnailEnter.bind(this);
     this.onThumbnailExit = this.onThumbnailExit.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
+    this.onInputKeyDown = this.onInputKeyDown.bind(this);
+    this.submitCustomBackground = this.submitCustomBackground.bind(this);
   }
 
   toggleClip(title) {
@@ -56,6 +61,36 @@ class ControlPanel extends Component {
 
   onThumbnailExit() {
     this.setState({thumbnailHover: ""})
+  }
+
+  onInputChange(evt) {
+    this.setState({customBackgroundInput: evt.target.value})
+  }
+
+  onInputKeyDown(evt) {
+    if(evt.keyCode === 13) {
+      this.submitCustomBackground()
+    }
+  }
+
+  submitCustomBackground() {
+    let input = this.state.customBackgroundInput.trim();
+    if(input === "") {
+      this.setState({customBackgroundError: "Please enter a valid direct link to an image (.png, .jpg, .gif)"})
+      return
+    }
+    input.replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+    try {
+      const parsedURL = new URL(input);
+    } catch(e) {
+      this.setState({customBackgroundError: "Please check your URL's formatting"})
+    }
+    this.setState({customBackgroundError: ""})
+    this.props.setCustomBackground(input)
   }
 
   render() {
@@ -93,6 +128,20 @@ class ControlPanel extends Component {
           </TabPanel>
           <TabPanel>
             <div className="ControlPanel-scroll">
+              <h5>Custom Background</h5>
+              <div className="ControlPanel-custom-background">
+                <div className="ControlPanel-custom-input">
+                  <input type="text" 
+                    className="ControlPanel-custom-textbox" 
+                    placeholder="Enter a direct link to an image here"
+                    value={this.state.customBackgroundInput} 
+                    onChange={this.onInputChange} 
+                    onKeyDown={this.onInputKeyDown}/>
+                  <button className="ControlPanel-custom-button" onClick={this.submitCustomBackground}>Set Background</button>
+                </div>
+                <p className="ControlPanel-custom-error">{this.state.customBackgroundError}</p>
+              </div>
+              <h5>Preset Backgrounds</h5>
               {
                 this.state.backgrounds.length > 0 && this.state.backgrounds.map(background => {
                   return (

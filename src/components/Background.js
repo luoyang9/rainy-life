@@ -29,6 +29,15 @@ class Background extends Component {
             </div>
           })
         }
+        <div 
+          className={this.props.url ? "Background Background-show" : "Background"} 
+          style={{
+            backgroundImage: `url(${this.props.url})`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat"
+          }}>
+        </div>
       </div>
     );  
   }

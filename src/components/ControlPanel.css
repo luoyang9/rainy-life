@@ -36,6 +36,33 @@
   overflow-y: auto;
 }
 
+.ControlPanel-custom-input {
+  margin: 0px 0px 30px 0px;
+}
+
+.ControlPanel-custom-textbox {
+  width: 64.5%;
+  display: inline-block;
+  line-height: 20px;
+}
+
+.ControlPanel-custom-button {
+  width: 25%;
+  margin: 0 0 0 3%;
+  display: inline-block;
+
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  border-radius: 20px;
+  color: white;
+}   
+
+.ControlPanel-custom-error {
+  font-size: 11px;
+  margin: 0 15px 10px 15px;
+  color: rgb(255, 91, 91);
+}
+
 .ControlPanel-cell {
   width: 45%;
   float: left;

@@ -3,18 +3,23 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import YouTube from 'react-youtube';
 import './MusicPanel.css';
 
+const presetVideos = [
+  "3jWRrafhO7M",
+  "-eohHwsplvY"
+]
+
 class MusicPanel extends Component {
 
   constructor(props) {
     super(props)
 
     this.state = {
-      youTubeVideoID: "",
+      youTubeVideoID: presetVideos[Math.floor((Math.random() * presetVideos.length))],
       youTubeVideoIDInput: "",
       youTubeError: "",
       youTubeOptions: {
         playerVars: { // https://developers.google.com/youtube/player_parameters
-          autoplay: 1,
+          autoplay: 0,
           loop: 1,
           playsinline: 1
         }
@@ -63,8 +68,10 @@ class MusicPanel extends Component {
     } catch(e) {
       this.setState({youTubeError: "Please check your URL's formatting"})
     }
-    console.log(videoId);
-    this.setState({youTubeError: "", youTubeVideoID: videoId})
+    console.log(videoId)
+    let youTubeOptions = this.state.youTubeOptions
+    youTubeOptions.playerVars.autoplay = 1
+    this.setState({youTubeError: "", youTubeVideoID: videoId, youTubeOptions: youTubeOptions})
   }
 
   render() {
