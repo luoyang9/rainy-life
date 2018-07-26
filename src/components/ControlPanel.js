@@ -26,7 +26,7 @@ class ControlPanel extends Component {
       volumes: volumes,
       playing: playing,
       thumbnailHover: "",
-      customBackgroundInput: "",
+      customBackgroundInput: this.props.customBackgroundInput,
       customBackgroundError: ""
     }
 
@@ -78,6 +78,9 @@ class ControlPanel extends Component {
     if(input === "") {
       this.setState({customBackgroundError: "Please enter a valid direct link to an image (.png, .jpg, .gif)"})
       return
+    }
+    if(input.substring(0, 4) !== "http") {
+      input = "http://" + input;
     }
     input.replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")

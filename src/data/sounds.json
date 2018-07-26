@@ -32,9 +32,17 @@
     "source": ""
   },
   {
-    "title": "City",
+    "title": "City Day",
     "src": "sounds/city_day.ogg",
     "thumbnailURL": "thumbnails/city_day.jpg",
+    "volume": 1,
+    "author": "",
+    "source": ""
+  },
+  {
+    "title": "City Night",
+    "src": "sounds/city_night.ogg",
+    "thumbnailURL": "thumbnails/city_night.jpg",
     "volume": 1,
     "author": "",
     "source": ""
@@ -43,6 +51,14 @@
     "title": "Fire Crackling",
     "src": "sounds/fire.ogg",
     "thumbnailURL": "thumbnails/fire.jpg",
+    "volume": 1,
+    "author": "",
+    "source": ""
+  },
+  {
+    "title": "Wind Howling",
+    "src": "sounds/wind.ogg",
+    "thumbnailURL": "thumbnails/wind.jpg",
     "volume": 1,
     "author": "",
     "source": ""

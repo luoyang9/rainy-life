@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { withCookies, Cookies } from 'react-cookie';
 import YouTube from 'react-youtube';
 import './MusicPanel.css';
 
@@ -13,9 +14,10 @@ class MusicPanel extends Component {
   constructor(props) {
     super(props)
 
+    const youtubeCookieID = this.props.cookies.get('youTubeVideoID')
     this.state = {
-      youTubeVideoID: presetVideos[Math.floor((Math.random() * presetVideos.length))],
-      youTubeVideoIDInput: "",
+      youTubeVideoID: youtubeCookieID ? youtubeCookieID : presetVideos[Math.floor((Math.random() * presetVideos.length))],
+      youTubeVideoIDInput: youtubeCookieID ? "https://youtu.be/" + youtubeCookieID  : "",
       youTubeError: "",
       youTubeOptions: {
         playerVars: { // https://developers.google.com/youtube/player_parameters
@@ -72,6 +74,7 @@ class MusicPanel extends Component {
     let youTubeOptions = this.state.youTubeOptions
     youTubeOptions.playerVars.autoplay = 1
     this.setState({youTubeError: "", youTubeVideoID: videoId, youTubeOptions: youTubeOptions})
+    this.props.cookies.set('youTubeVideoID', videoId)
   }
 
   render() {
@@ -118,4 +121,4 @@ class MusicPanel extends Component {
   }
 }
 
-export default MusicPanel;
+export default withCookies(MusicPanel);
