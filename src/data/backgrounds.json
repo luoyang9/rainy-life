@@ -1,43 +1,43 @@
 [
   {
     "title": "Forest",
-    "thumbnailURL": "thumbnails/forest.jpg",
-    "backgroundURL": "backgrounds/forest.png",
+    "thumbnailURL": "http://cdn.rainy.life/thumbnails/forest.jpg",
+    "backgroundURL": "http://cdn.rainy.life/backgrounds/forest.png",
     "attributionText": "Photo by Jim Bendon",
     "attributionURL": "https://flic.kr/p/bzPXpL"
   },
   {
     "title": "Window",
-    "thumbnailURL": "thumbnails/window.jpg",
-    "backgroundURL": "backgrounds/window.png",
+    "thumbnailURL": "http://cdn.rainy.life/thumbnails/window.jpg",
+    "backgroundURL": "http://cdn.rainy.life/backgrounds/window.png",
     "attributionText": "Photo by a.dombrowski",
     "attributionURL": "https://flic.kr/p/a9gyTq"
   },
   {
     "title": "Night City",
-    "thumbnailURL": "thumbnails/night_city.jpg",
-    "backgroundURL": "backgrounds/night_city.png",
+    "thumbnailURL": "http://cdn.rainy.life/thumbnails/night_city.jpg",
+    "backgroundURL": "http://cdn.rainy.life/backgrounds/night_city.png",
     "attributionText": "Photo by Steven Pisano",
     "attributionURL": "https://flic.kr/p/G5u1Yu"
   },
   {
     "title": "Night Window",
-    "thumbnailURL": "thumbnails/night_window.jpg",
-    "backgroundURL": "backgrounds/night_window.png",
+    "thumbnailURL": "http://cdn.rainy.life/thumbnails/night_window.jpg",
+    "backgroundURL": "http://cdn.rainy.life/backgrounds/night_window.png",
     "attributionText": "Photo by Silvia Viñuales",
     "attributionURL": "https://flic.kr/p/aGpU8v"
   },
   {
     "title": "Italy",
-    "thumbnailURL": "thumbnails/italy.jpg",
-    "backgroundURL": "backgrounds/italy.png",
+    "thumbnailURL": "http://cdn.rainy.life/thumbnails/italy.jpg",
+    "backgroundURL": "http://cdn.rainy.life/backgrounds/italy.png",
     "attributionText": "Photo by Riccardo Cuppini",
     "attributionURL": "https://flic.kr/p/nfnzad"
   },
   {
     "title": "Plant",
-    "thumbnailURL": "thumbnails/plant.jpg",
-    "backgroundURL": "backgrounds/plant.png",
+    "thumbnailURL": "http://cdn.rainy.life/thumbnails/plant.jpg",
+    "backgroundURL": "http://cdn.rainy.life/backgrounds/plant.png",
     "attributionText": "Photo by Matthew Grapengieser",
     "attributionURL": "https://flic.kr/p/o7znFp"
   }
