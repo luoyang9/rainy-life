@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { withCookies, Cookies } from 'react-cookie';
+import { withCookies } from 'react-cookie';
 import YouTube from 'react-youtube';
 import './MusicPanel.css';
 

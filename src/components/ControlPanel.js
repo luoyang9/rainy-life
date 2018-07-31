@@ -88,7 +88,7 @@ class ControlPanel extends Component {
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
     try {
-      const parsedURL = new URL(input);
+      new URL(input);
     } catch(e) {
       this.setState({customBackgroundError: "Please check your URL's formatting"})
     }
