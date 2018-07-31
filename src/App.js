@@ -24,7 +24,7 @@ class App extends Component {
       activeBackground: preset ? cookieBackground : "Forest",
       url: !preset ? cookieBackground : "",
       audioManager: new AudioManager(),
-      controlPanelClass: "ControlPanel-show",
+      controlPanelClass: "",
       MusicPanelClass: "",
       settingsClass: "App-settingsShow"
     }
