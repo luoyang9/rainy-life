@@ -26,7 +26,7 @@ class App extends Component {
       audioManager: new AudioManager(),
       controlPanelClass: "",
       MusicPanelClass: "",
-      settingsClass: "App-settingsShow"
+      settingsClass: ""
     }
 
     this.changeBackground = this.changeBackground.bind(this)
