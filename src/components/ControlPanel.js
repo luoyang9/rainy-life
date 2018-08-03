@@ -13,12 +13,12 @@ class ControlPanel extends Component {
 
     const volumes = {}
     const playing = {}
-    const loading = {}
+    const loaded = {}
     if(soundsJSON.length > 0) {
       soundsJSON.forEach(sound => {
         volumes[sound.title] = sound.volume;
         playing[sound.title] = false;
-        loading[sound.title] = false;
+        loaded[sound.title] = false;
       })
     }
 
@@ -27,7 +27,7 @@ class ControlPanel extends Component {
       sounds: soundsJSON,
       volumes: volumes,
       playing: playing,
-      loading: loading,
+      loaded: loaded,
       thumbnailHover: "",
       customBackgroundInput: this.props.customBackgroundInput,
       customBackgroundError: ""
@@ -44,21 +44,18 @@ class ControlPanel extends Component {
 
   toggleClip(i, title) {
     const playing = this.state.playing;
+    const loaded = this.state.loaded;
     playing[title] = !playing[title];
-    
-    if(playing[title]) {
-      const loading = this.state.loading;
-      loading[title] = true;
+
+    if(!loaded[title]) {
       this.props.audioManager.loadClip(this.state.sounds[i], () => {
-        const loading = this.state.loading;
-        loading[title] = false;
-        this.setState({loading: loading})
+        const loaded = this.state.loaded;
+        loaded[title] = true;
+        this.setState({loaded: loaded})
       });
-      this.setState({playing: playing, loading: loading})
-    } else {
-      this.setState({playing: playing})
     }
     this.props.audioManager.playPauseClip(title, this.state.volumes[title])
+    this.setState({playing: playing})
   }
 
   volumeChange(title, val) {
@@ -131,7 +128,7 @@ class ControlPanel extends Component {
                         <div className="ControlPanel-sound-container">
                           <p className="ControlPanel-sound-title">{sound.title}</p>
                           {
-                            this.state.loading[sound.title] ? <div class="ControlPanel-sound-load">
+                            this.state.playing[sound.title] && !this.state.loaded[sound.title] ? <div className="ControlPanel-sound-load">
                               <div className="ControlPanel-sound-load-block ControlPanel-sound-load-block-1"></div>
                               <div className="ControlPanel-sound-load-block ControlPanel-sound-load-block-2"></div>
                               <div className="ControlPanel-sound-load-block ControlPanel-sound-load-block-3"></div>
