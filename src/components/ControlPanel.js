@@ -132,9 +132,9 @@ class ControlPanel extends Component {
                           <p className="ControlPanel-sound-title">{sound.title}</p>
                           {
                             this.state.loading[sound.title] ? <div class="ControlPanel-sound-load">
-                              <div class="ControlPanel-sound-load-block ControlPanel-sound-load-block-1"></div>
-                              <div class="ControlPanel-sound-load-block ControlPanel-sound-load-block-2"></div>
-                              <div class="ControlPanel-sound-load-block ControlPanel-sound-load-block-3"></div>
+                              <div className="ControlPanel-sound-load-block ControlPanel-sound-load-block-1"></div>
+                              <div className="ControlPanel-sound-load-block ControlPanel-sound-load-block-2"></div>
+                              <div className="ControlPanel-sound-load-block ControlPanel-sound-load-block-3"></div>
                             </div> :
                             <i onClick={() => this.toggleClip(i, sound.title)} className="material-icons ControlPanel-sound-play">
                               { this.state.playing[sound.title] ? "pause" : "play_arrow" }
