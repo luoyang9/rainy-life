@@ -13,10 +13,12 @@ class ControlPanel extends Component {
 
     const volumes = {}
     const playing = {}
+    const loading = {}
     if(soundsJSON.length > 0) {
       soundsJSON.forEach(sound => {
         volumes[sound.title] = sound.volume;
         playing[sound.title] = false;
+        loading[sound.title] = false;
       })
     }
 
@@ -25,13 +27,12 @@ class ControlPanel extends Component {
       sounds: soundsJSON,
       volumes: volumes,
       playing: playing,
+      loading: loading,
       thumbnailHover: "",
       customBackgroundInput: this.props.customBackgroundInput,
       customBackgroundError: ""
     }
 
-    this.props.audioManager.loadClips(this.state.sounds);
-    
     this.volumeChange = this.volumeChange.bind(this);
     this.toggleClip = this.toggleClip.bind(this);
     this.onThumbnailEnter = this.onThumbnailEnter.bind(this);
@@ -41,11 +42,23 @@ class ControlPanel extends Component {
     this.submitCustomBackground = this.submitCustomBackground.bind(this);
   }
 
-  toggleClip(title) {
-    this.props.audioManager.playPauseClip(title, this.state.volumes[title])
+  toggleClip(i, title) {
     const playing = this.state.playing;
-    playing[title] = !playing[title]
-    this.setState({playing: playing})
+    playing[title] = !playing[title];
+    
+    if(playing[title]) {
+      const loading = this.state.loading;
+      loading[title] = true;
+      this.props.audioManager.loadClip(this.state.sounds[i], () => {
+        const loading = this.state.loading;
+        loading[title] = false;
+        this.setState({loading: loading})
+      });
+      this.setState({playing: playing, loading: loading})
+    } else {
+      this.setState({playing: playing})
+    }
+    this.props.audioManager.playPauseClip(title, this.state.volumes[title])
   }
 
   volumeChange(title, val) {
@@ -110,16 +123,24 @@ class ControlPanel extends Component {
           <TabPanel>
             <div className="ControlPanel-scroll">
               {
-                this.state.sounds.length > 0 && this.state.sounds.map(sound => {
+                this.state.sounds.length > 0 && this.state.sounds.map((sound, i) => {
                   return (
                     <div className="ControlPanel-cell" key={sound.title}>
                       <div className="ControlPanel-thumbnail-container">
                         <img alt={sound.title} src={sound.thumbnailURL} className="ControlPanel-thumbnail" />
                         <div className="ControlPanel-sound-container">
                           <p className="ControlPanel-sound-title">{sound.title}</p>
-                          <i onClick={() => this.toggleClip(sound.title)} className="material-icons ControlPanel-sound-play">
-                            { this.state.playing[sound.title] ? "pause" : "play_arrow" }
-                          </i>
+                          {
+                            this.state.loading[sound.title] ? <div class="ControlPanel-sound-load">
+                              <div class="ControlPanel-sound-load-block ControlPanel-sound-load-block-1"></div>
+                              <div class="ControlPanel-sound-load-block ControlPanel-sound-load-block-2"></div>
+                              <div class="ControlPanel-sound-load-block ControlPanel-sound-load-block-3"></div>
+                            </div> :
+                            <i onClick={() => this.toggleClip(i, sound.title)} className="material-icons ControlPanel-sound-play">
+                              { this.state.playing[sound.title] ? "pause" : "play_arrow" }
+                            </i>
+                          }
+                          
                           <Slider className="ControlPanel-sound-slider" value={this.state.volumes[sound.title] * 100} onChange={val => this.volumeChange(sound.title, val)} />
                         </div>
                       </div>

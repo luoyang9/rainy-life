@@ -8,14 +8,15 @@ export default class AudioManager {
     this.instances = {}
   }
 
-  loadClips(clips) {
-    clips.forEach(clip => {
+  loadClip(clip, callback) {
+    if(!this.sounds.hasOwnProperty(clip.title)) {
       this.sounds[clip.title] = new Howl({
         src: [clip.src],
         loop: true,
-        volume: clip.volume
-      })
-    });
+        volume: clip.volume,
+        onload: callback
+      });
+    }
   }
 
   playPauseClip(title, vol) {
