@@ -18,7 +18,7 @@ class PreloadImage extends Component {
       this.imageHD.setAttribute(
         'style',
         `background-image: url('${this.props.srcLoaded}');
-        background-position: center;
+        background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;`
       );

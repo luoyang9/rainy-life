@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { withCookies } from 'react-cookie';
 import Slider from 'rc-slider/lib/Slider';
 import 'rc-slider/assets/index.css';
 import './ControlPanel.css';
@@ -14,9 +15,11 @@ class ControlPanel extends Component {
     const volumes = {}
     const playing = {}
     const loaded = {}
+    const cookieVal = {}
     if(soundsJSON.length > 0) {
-      soundsJSON.forEach(sound => {
-        volumes[sound.title] = sound.volume;
+      soundsJSON.forEach((sound, i) => {
+        cookieVal[sound.title] = this.props.cookies.get("Sound " + sound.title)
+        volumes[sound.title] =  cookieVal[sound.title] ? cookieVal[sound.title] : sound.volume;
         playing[sound.title] = false;
         loaded[sound.title] = false;
       })
@@ -40,12 +43,26 @@ class ControlPanel extends Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.onInputKeyDown = this.onInputKeyDown.bind(this);
     this.submitCustomBackground = this.submitCustomBackground.bind(this);
+
+    if(soundsJSON.length > 0) {
+      soundsJSON.forEach((sound, i) => {
+        // play sounds from cookies
+        if(cookieVal[sound.title]) {
+          this.toggleClip(i, sound.title, true)
+        }
+      })
+    }
   }
 
-  toggleClip(i, title) {
+  toggleClip(i, title, init) {
     const playing = this.state.playing;
     const loaded = this.state.loaded;
     playing[title] = !playing[title];
+    if(playing[title] && !init) {
+      this.props.cookies.set("Sound " + title, this.state.volumes[title])
+    } else if(!init){
+      this.props.cookies.remove("Sound " + title)
+    }
 
     if(!loaded[title]) {
       this.props.audioManager.loadClip(this.state.sounds[i], () => {
@@ -197,4 +214,4 @@ class ControlPanel extends Component {
   }
 }
 
-export default ControlPanel;
+export default withCookies(ControlPanel);
