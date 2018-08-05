@@ -4,7 +4,8 @@
   top: 40px;
   margin: 15px;
   background-color: rgba(12, 12, 12, 0.9);
-  color: #b5b5b5;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 1px;
   width: calc(100% - 30px);
   height: calc(100% - 30px);
   max-width: 550px;
@@ -35,13 +36,13 @@
 }
 
 .MusicPanel-YT-textbox {
-    width: 79.5%;
+    width: 76.5%;
     display: inline-block;
     line-height: 20px;
 }
 
 .MusicPanel-YT-button {
-    width: 12%;
+    width: 15%;
     margin: 0 0 0 3%;
     display: inline-block;
 
@@ -49,6 +50,8 @@
     border: none;
     border-radius: 20px;
     color: white;
+    font-size: 12px;
+    letter-spacing: 1px;
 }   
 
 .MusicPanel-YT-error {

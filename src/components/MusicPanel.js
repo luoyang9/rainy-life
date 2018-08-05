@@ -84,8 +84,7 @@ class MusicPanel extends Component {
       <div className={"MusicPanel " + className}>
         <Tabs>
           <TabList>
-            <Tab>YouTube</Tab>
-            <Tab>Custom URL</Tab>
+            <Tab>youtube</Tab>
           </TabList>
       
           <TabPanel>
@@ -97,7 +96,7 @@ class MusicPanel extends Component {
                   value={this.state.youTubeVideoIDInput} 
                   onChange={this.onInputChange} 
                   onKeyDown={this.onInputKeyDown}/>
-                <button className="MusicPanel-YT-button" onClick={this.submitVideoID}>Play</button>
+                <button className="MusicPanel-YT-button" onClick={this.submitVideoID}>play</button>
               </div>
               <p className="MusicPanel-YT-error">{this.state.youTubeError}</p>
               <div className="MusicPanel-YT-video-container">
@@ -109,10 +108,6 @@ class MusicPanel extends Component {
                   />
                 }
               </div>
-            </div>
-          </TabPanel>
-          <TabPanel>
-            <div className="MusicPanel-test">
             </div>
           </TabPanel>
         </Tabs>

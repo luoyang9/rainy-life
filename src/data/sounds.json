@@ -1,6 +1,6 @@
 [
   {
-    "title": "Rain",
+    "title": "rain",
     "src": "https://cdn.rainy.life/sounds/rain.ogg",
     "thumbnailURL": "thumbnails/rain.jpg",
     "volume": 0.5,
@@ -8,7 +8,7 @@
     "source": "https://freesound.org/people/InspectorJ/sounds/401275/"
   },
   {
-    "title": "Rain On Window",
+    "title": "rain on window",
     "src": "https://cdn.rainy.life/sounds/window.ogg",
     "thumbnailURL": "thumbnails/rain_window.jpg",
     "volume": 0.5,
@@ -16,7 +16,7 @@
     "source": "https://freesound.org/people/InspectorJ/sounds/346642/"
   },
   {
-    "title": "Rain On Umbrella",
+    "title": "rain on umbrella",
     "src": "https://cdn.rainy.life/sounds/rain_umbrella.ogg",
     "thumbnailURL": "thumbnails/rain_umbrella.jpg",
     "volume": 0.5,
@@ -24,7 +24,7 @@
     "source": ""
   },
   {
-    "title": "Distant Thunder",
+    "title": "distant thunder",
     "src": "https://cdn.rainy.life/sounds/distant_thunder.ogg",
     "thumbnailURL": "thumbnails/thunderstorm.jpg",
     "volume": 0.5,
@@ -32,7 +32,7 @@
     "source": ""
   },
   {
-    "title": "City Day",
+    "title": "urban city",
     "src": "https://cdn.rainy.life/sounds/city_day.ogg",
     "thumbnailURL": "thumbnails/city_day.jpg",
     "volume": 0.5,
@@ -40,7 +40,7 @@
     "source": ""
   },
   {
-    "title": "City Night",
+    "title": "city at night",
     "src": "https://cdn.rainy.life/sounds/city_night.ogg",
     "thumbnailURL": "thumbnails/city_night.jpg",
     "volume": 0.5,
@@ -48,7 +48,7 @@
     "source": ""
   },
   {
-    "title": "Fire Crackling",
+    "title": "fire crackling",
     "src": "https://cdn.rainy.life/sounds/fire.ogg",
     "thumbnailURL": "thumbnails/fire.jpg",
     "volume": 0.5,
@@ -56,7 +56,7 @@
     "source": ""
   },
   {
-    "title": "Wind Howling",
+    "title": "howling wind",
     "src": "https://cdn.rainy.life/sounds/wind.ogg",
     "thumbnailURL": "thumbnails/wind.jpg",
     "volume": 0.5,

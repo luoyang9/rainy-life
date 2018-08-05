@@ -1,44 +1,44 @@
 [
   {
-    "title": "Forest",
+    "title": "forest",
     "thumbnailURL": "https://cdn.rainy.life/thumbnails/forest.jpg",
     "backgroundURL": "https://cdn.rainy.life/backgrounds/forest.jpg",
-    "attributionText": "Photo by Jim Bendon",
+    "attributionText": "photo by Jim Bendon",
     "attributionURL": "https://flic.kr/p/bzPXpL"
   },
   {
-    "title": "Window",
+    "title": "window",
     "thumbnailURL": "https://cdn.rainy.life/thumbnails/window.jpg",
     "backgroundURL": "https://cdn.rainy.life/backgrounds/window.jpg",
-    "attributionText": "Photo by a.dombrowski",
+    "attributionText": "photo by a.dombrowski",
     "attributionURL": "https://flic.kr/p/a9gyTq"
   },
   {
-    "title": "Night City",
+    "title": "night city",
     "thumbnailURL": "https://cdn.rainy.life/thumbnails/night_city.jpg",
     "backgroundURL": "https://cdn.rainy.life/backgrounds/night_city.jpg",
-    "attributionText": "Photo by Steven Pisano",
+    "attributionText": "photo by Steven Pisano",
     "attributionURL": "https://flic.kr/p/G5u1Yu"
   },
   {
-    "title": "Night Window",
+    "title": "night window",
     "thumbnailURL": "https://cdn.rainy.life/thumbnails/night_window.jpg",
     "backgroundURL": "https://cdn.rainy.life/backgrounds/night_window.jpg",
-    "attributionText": "Photo by Keir Martin",
+    "attributionText": "photo by Keir Martin",
     "attributionURL": "https://flic.kr/p/9eRjoZ"
   },
   {
-    "title": "Italy",
+    "title": "rain in italy",
     "thumbnailURL": "https://cdn.rainy.life/thumbnails/italy.jpg",
     "backgroundURL": "https://cdn.rainy.life/backgrounds/italy.jpg",
-    "attributionText": "Photo by Riccardo Cuppini",
+    "attributionText": "photo by Riccardo Cuppini",
     "attributionURL": "https://flic.kr/p/nfnzad"
   },
   {
-    "title": "Plant",
+    "title": "dewdrops",
     "thumbnailURL": "https://cdn.rainy.life/thumbnails/plant.jpg",
     "backgroundURL": "https://cdn.rainy.life/backgrounds/plant.jpg",
-    "attributionText": "Photo by Matthew Grapengieser",
+    "attributionText": "photo by Matthew Grapengieser",
     "attributionURL": "https://flic.kr/p/o7znFp"
   }
 ]

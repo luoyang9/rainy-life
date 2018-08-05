@@ -43,11 +43,14 @@ class ControlPanel extends Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.onInputKeyDown = this.onInputKeyDown.bind(this);
     this.submitCustomBackground = this.submitCustomBackground.bind(this);
+  }
 
-    if(soundsJSON.length > 0) {
-      soundsJSON.forEach((sound, i) => {
+  componentDidMount() {
+    if(this.state.sounds.length > 0) {
+      this.state.sounds.forEach((sound, i) => {
+        const cookieVal = this.props.cookies.get("Sound " + sound.title)
         // play sounds from cookies
-        if(cookieVal[sound.title]) {
+        if(cookieVal) {
           this.toggleClip(i, sound.title, true)
         }
       })
@@ -80,6 +83,9 @@ class ControlPanel extends Component {
     volumes[title] = val / 100;
     this.setState({volumes: volumes});
     this.props.audioManager.setClipVolume(title, this.state.volumes[title])
+    if(this.props.cookies.get("Sound " + title)) {
+      this.props.cookies.set("Sound " + title, this.state.volumes[title])
+    }
   }
 
   onThumbnailEnter(title) {
@@ -130,8 +136,8 @@ class ControlPanel extends Component {
       <div className={"ControlPanel " + className}>
         <Tabs>
           <TabList>
-            <Tab>Sounds</Tab>
-            <Tab>Background</Tab>
+            <Tab>sounds</Tab>
+            <Tab>backgrounds</Tab>
           </TabList>
       
           <TabPanel>
@@ -166,7 +172,7 @@ class ControlPanel extends Component {
           </TabPanel>
           <TabPanel>
             <div className="ControlPanel-scroll">
-              <h5>Custom Background</h5>
+              <h5 className="ControlPanel-subheader">custom background</h5>
               <div className="ControlPanel-custom-background">
                 <div className="ControlPanel-custom-input">
                   <input type="text" 
@@ -175,11 +181,11 @@ class ControlPanel extends Component {
                     value={this.state.customBackgroundInput} 
                     onChange={this.onInputChange} 
                     onKeyDown={this.onInputKeyDown}/>
-                  <button className="ControlPanel-custom-button" onClick={this.submitCustomBackground}>Set Background</button>
+                  <button className="ControlPanel-custom-button" onClick={this.submitCustomBackground}>set</button>
                 </div>
                 <p className="ControlPanel-custom-error">{this.state.customBackgroundError}</p>
               </div>
-              <h5>Preset Backgrounds</h5>
+              <h5 className="ControlPanel-subheader">presets</h5>
               {
                 this.state.backgrounds.length > 0 && this.state.backgrounds.map(background => {
                   return (
