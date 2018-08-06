@@ -51,8 +51,8 @@ class App extends Component {
     })
 
     this.state = {
-      activeBackground: background ? background : !backgroundUrl && preset ? cookieBackground : "Forest",
-      url: backgroundUrl ? backgroundUrl : !background && !preset ? cookieBackground : "",
+      activeBackground: background ? background : ((!backgroundUrl && preset) ? cookieBackground : "forest"),
+      url: backgroundUrl ? backgroundUrl : ((!background && !preset) ? cookieBackground : ""),
       audioManager: new AudioManager(),
       controlPanelClass: "",
       MusicPanelClass: "",
