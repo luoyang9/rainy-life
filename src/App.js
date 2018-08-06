@@ -28,7 +28,7 @@ class App extends Component {
     if(this.props.cookies.get("firsttime")) {
       firstTime = false;
     } else {
-      this.props.cookies.set("firsttime", "false", {domain: "www.rainy.life"})
+      this.props.cookies.set("firsttime", "false")
     }
 
     // parse url params
@@ -75,12 +75,12 @@ class App extends Component {
 
   changeBackground(title) {
     this.setState({activeBackground: title, url: ""});
-    this.props.cookies.set('background', title, {domain: "www.rainy.life"});
+    this.props.cookies.set('background', title);
   }
 
   setCustomBackground(url) {
     this.setState({url: url, activeBackground: ""})
-    this.props.cookies.set('background', url, {domain: "www.rainy.life"});
+    this.props.cookies.set('background', url);
   }
 
   toggleSettings() {

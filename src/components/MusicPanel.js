@@ -75,7 +75,7 @@ class MusicPanel extends Component {
     let youTubeOptions = this.state.youTubeOptions
     youTubeOptions.playerVars.autoplay = 1
     this.setState({youTubeError: "", youTubeVideoID: videoId, youTubeOptions: youTubeOptions})
-    this.props.cookies.set('youTubeVideoID', videoId, {domain: "www.rainy.life"})
+    this.props.cookies.set('youTubeVideoID', videoId)
   }
 
   render() {
