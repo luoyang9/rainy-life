@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { withCookies } from 'react-cookie';
 import Slider from 'rc-slider/lib/Slider';
 import 'rc-slider/assets/index.css';
 import './ControlPanel.css';
@@ -15,7 +14,7 @@ class ControlPanel extends Component {
     const volumes = {}
     const playing = {}
     const loaded = {}
-    const cookieVal = {}
+    const localVal = {}
     if(soundsJSON.length > 0) {
       if(this.props.sounds) {
         const decodedObj = JSON.parse(atob(decodeURIComponent(this.props.sounds)))
@@ -30,8 +29,8 @@ class ControlPanel extends Component {
         })
       } else {
         soundsJSON.forEach(sound => {
-          cookieVal[sound.id] = this.props.cookies.get("Sound " + sound.id)
-          volumes[sound.id] =  cookieVal[sound.id] ? cookieVal[sound.id] : sound.volume;
+          localVal[sound.id] = localStorage.getItem("Sound " + sound.id)
+          volumes[sound.id] =  localVal[sound.id] ? localVal[sound.id] : sound.volume;
           playing[sound.id] = false;
           loaded[sound.id] = false;
         })
@@ -45,7 +44,7 @@ class ControlPanel extends Component {
       playing: playing,
       loaded: loaded,
       thumbnailHover: "",
-      customBackgroundInput: this.props.customBackgroundInput,
+      customBackgroundInput: this.props.customBackgroundInput || "",
       customBackgroundError: ""
     }
 
@@ -69,9 +68,9 @@ class ControlPanel extends Component {
         })
       } else {
         this.state.sounds.forEach((sound, i) => {
-          const cookieVal = this.props.cookies.get("Sound " + sound.id)
-          // play sounds from cookies
-          if(cookieVal) {
+          const localVal = localStorage.getItem("Sound " + sound.id)
+          // play sounds from local storage
+          if(localVal) {
             this.toggleClip(i, sound.id, true)
           }
         })
@@ -84,9 +83,9 @@ class ControlPanel extends Component {
     const loaded = this.state.loaded;
     playing[id] = !playing[id];
     if(playing[id] && !init) {
-      this.props.cookies.set("Sound " + id, this.state.volumes[id])
+      localStorage.setItem("Sound " + id, this.state.volumes[id])
     } else if(!init){
-      this.props.cookies.remove("Sound " + id)
+      localStorage.removeItem("Sound " + id)
     }
 
     if(!loaded[id]) {
@@ -105,8 +104,8 @@ class ControlPanel extends Component {
     volumes[id] = val / 100;
     this.setState({volumes: volumes});
     this.props.audioManager.setClipVolume(id, this.state.volumes[id])
-    if(this.props.cookies.get("Sound " + id)) {
-      this.props.cookies.set("Sound " + id, this.state.volumes[id])
+    if(localStorage.getItem("Sound " + id)) {
+      localStorage.setItem("Sound " + id, this.state.volumes[id])
     }
   }
 
@@ -227,7 +226,7 @@ class ControlPanel extends Component {
                         target="_blank"
                         href={background.attributionURL} 
                         className={
-                          "ControlPanel-thumbnail-source" + (this.state.thumbnailHover === background.title ? " ControlPanel-thumbnail-source-hover" : "")
+                          "ControlPanel-thumbnail-source" + (this.state.thumbnailHover === background.id ? " ControlPanel-thumbnail-source-hover" : "")
                         }
                       >{background.attributionText}</a>
                     </div>
@@ -242,4 +241,4 @@ class ControlPanel extends Component {
   }
 }
 
-export default withCookies(ControlPanel);
+export default ControlPanel;

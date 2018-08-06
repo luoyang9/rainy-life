@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { withCookies } from 'react-cookie';
 import YouTube from 'react-youtube';
 import './MusicPanel.css';
 
@@ -14,15 +13,15 @@ class MusicPanel extends Component {
   constructor(props) {
     super(props)
 
-    const youtubeCookieID = this.props.cookies.get('youTubeVideoID')
+    const youtubeLocalID = localStorage.getItem('youTubeVideoID')
     const youtubeUrlID = this.props.youtubeUrlID
     this.state = {
-      youTubeVideoID: youtubeUrlID ? youtubeUrlID : youtubeCookieID ? youtubeCookieID : presetVideos[Math.floor((Math.random() * presetVideos.length))],
-      youTubeVideoIDInput: youtubeUrlID ? "https://youtu.be/" + youtubeUrlID : youtubeCookieID ? "https://youtu.be/" + youtubeCookieID  : "",
+      youTubeVideoID: youtubeUrlID ? youtubeUrlID : youtubeLocalID ? youtubeLocalID : presetVideos[Math.floor((Math.random() * presetVideos.length))],
+      youTubeVideoIDInput: youtubeUrlID ? "https://youtu.be/" + youtubeUrlID : youtubeLocalID ? "https://youtu.be/" + youtubeLocalID  : "",
       youTubeError: "",
       youTubeOptions: {
         playerVars: { // https://developers.google.com/youtube/player_parameters
-          autoplay: youtubeCookieID || youtubeUrlID ? 1 : 0,
+          autoplay: youtubeLocalID || youtubeUrlID ? 1 : 0,
           loop: 1,
           playsinline: 1
         }
@@ -75,7 +74,7 @@ class MusicPanel extends Component {
     let youTubeOptions = this.state.youTubeOptions
     youTubeOptions.playerVars.autoplay = 1
     this.setState({youTubeError: "", youTubeVideoID: videoId, youTubeOptions: youTubeOptions})
-    this.props.cookies.set('youTubeVideoID', videoId)
+    localStorage.setItem('youTubeVideoID', videoId)
   }
 
   render() {
@@ -117,4 +116,4 @@ class MusicPanel extends Component {
   }
 }
 
-export default withCookies(MusicPanel);
+export default MusicPanel;

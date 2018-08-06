@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withCookies } from 'react-cookie';
 import './App.css';
 
 import Background from './components/Background'
@@ -18,17 +17,17 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    // parse cookies
-    const cookieBackground = this.props.cookies.get('background')
+    // parse local storage
+    const localBackground = localStorage.getItem('background')
     let firstTime = true;
     let preset = false
     for(var i = 0; i < backgroundsJSON.length; i++) {
-      if(cookieBackground === backgroundsJSON[i].id) preset = true
+      if(localBackground === backgroundsJSON[i].id) preset = true
     }
-    if(this.props.cookies.get("firsttime")) {
+    if(localStorage.getItem("firsttime")) {
       firstTime = false;
     } else {
-      this.props.cookies.set("firsttime", "false")
+      localStorage.setItem("firsttime", false)
     }
 
     // parse url params
@@ -51,8 +50,8 @@ class App extends Component {
     })
 
     this.state = {
-      activeBackground: background ? background : ((!backgroundUrl && preset) ? cookieBackground : 0),
-      url: backgroundUrl ? backgroundUrl : ((!background && !preset) ? cookieBackground : ""),
+      activeBackground: background ? background : ((!backgroundUrl && preset) ? localBackground : 0),
+      url: backgroundUrl ? backgroundUrl : ((!background && !preset) ? localBackground : ""),
       audioManager: new AudioManager(),
       controlPanelClass: "",
       MusicPanelClass: "",
@@ -75,12 +74,12 @@ class App extends Component {
 
   changeBackground(id) {
     this.setState({activeBackground: id, url: ""});
-    this.props.cookies.set('background', id);
+    localStorage.setItem('background', id);
   }
 
   setCustomBackground(url) {
     this.setState({url: url, activeBackground: ""})
-    this.props.cookies.set('background', url);
+    localStorage.setItem('background', url);
   }
 
   toggleSettings() {
@@ -116,14 +115,14 @@ class App extends Component {
     } else if(this.state.activeBackground) {
       urlParams.push("b=" + this.state.activeBackground);
     }
-    const youtubeCookieID = this.props.cookies.get("youTubeVideoID")
-    if(youtubeCookieID) {
-      urlParams.push("v=" + youtubeCookieID)
+    const youtubeLocalID = localStorage.getItem("youTubeVideoID")
+    if(youtubeLocalID) {
+      urlParams.push("v=" + youtubeLocalID)
     }
     
     const soundParam = {}
     soundsJSON.forEach(sound => {
-      const soundInfo = this.props.cookies.get("Sound " + sound.id)
+      const soundInfo = localStorage.getItem("Sound " + sound.id)
       if(soundInfo) {
         soundParam[sound.id] = soundInfo
       }
@@ -177,4 +176,4 @@ class App extends Component {
   }
 }
 
-export default withCookies(App);
+export default App;
