@@ -15,13 +15,14 @@ class MusicPanel extends Component {
     super(props)
 
     const youtubeCookieID = this.props.cookies.get('youTubeVideoID')
+    const youtubeUrlID = this.props.youtubeUrlID
     this.state = {
-      youTubeVideoID: youtubeCookieID ? youtubeCookieID : presetVideos[Math.floor((Math.random() * presetVideos.length))],
-      youTubeVideoIDInput: youtubeCookieID ? "https://youtu.be/" + youtubeCookieID  : "",
+      youTubeVideoID: youtubeUrlID ? youtubeUrlID : youtubeCookieID ? youtubeCookieID : presetVideos[Math.floor((Math.random() * presetVideos.length))],
+      youTubeVideoIDInput: youtubeUrlID ? "https://youtu.be/" + youtubeUrlID : youtubeCookieID ? "https://youtu.be/" + youtubeCookieID  : "",
       youTubeError: "",
       youTubeOptions: {
         playerVars: { // https://developers.google.com/youtube/player_parameters
-          autoplay: 0,
+          autoplay: youtubeCookieID || youtubeUrlID ? 1 : 0,
           loop: 1,
           playsinline: 1
         }

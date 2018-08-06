@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "clipboard": "^2.0.1",
     "gh-pages": "^1.2.0",
     "howler": "^2.0.12",
     "rc-slider": "^8.6.1",

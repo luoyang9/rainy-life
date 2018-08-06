@@ -14,7 +14,12 @@ export default class AudioManager {
         src: [clip.src],
         loop: true,
         volume: clip.volume,
-        onload: callback
+        onload: callback,
+        onfade: () => {
+          if(this.instances.hasOwnProperty(clip.title) && this.sounds[clip.title].volume() === 0){
+            this.pauseClip(clip.title)
+          }
+        }
       });
     }
   }
@@ -22,14 +27,15 @@ export default class AudioManager {
   playPauseClip(title, vol) {
     if(this.instances.hasOwnProperty(title)) {
       if(this.sounds[title].playing(this.instances[title])) {
-        this.pauseClip(title)
+        this.sounds[title].fade(this.sounds[title].volume(), 0, 500)
       } else {
-        this.setClipVolume(title, vol)
+        this.sounds[title].fade(0, vol, 500)
         this.resumeClip(title)
       }
     } else {
-      this.setClipVolume(title, vol)
+      this.setClipVolume(title, 0)
       this.playClip(title)
+      this.sounds[title].fade(0, vol, 500)
     }
   }
 

@@ -23,6 +23,19 @@
   cursor: pointer;
 }
 
+.App-share {
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  top: 40px;
+  right: 45px;
+  cursor: pointer;
+}
+
+.App-share:hover {
+  color: white;
+}
+
 .App-twitter:hover #twitter {
   fill-opacity: 1;
 }
@@ -36,7 +49,7 @@
 }
 
 .App-music {
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
   position: absolute;
   left: 15px;
   top: 15px;
@@ -51,8 +64,16 @@
                                   supported by Chrome and Opera */
 }
 
-.App-settings {
+.App-music:hover {
   color: white;
+}
+
+.App-musicShow {
+  color: white;
+}
+
+.App-settings {
+  color: rgba(255, 255, 255, 0.8);
   position: absolute;
   right: 15px;
   bottom: 15px;
@@ -68,10 +89,15 @@
                                   supported by Chrome and Opera */
 }
 
+.App-settings:hover {
+  color: white;
+}
+
 .App-settingsShow {
   -webkit-transform: rotate(25deg);
       -ms-transform: rotate(25deg);
           transform: rotate(25deg);
+  color: white;
 }
 
 ::-webkit-scrollbar {

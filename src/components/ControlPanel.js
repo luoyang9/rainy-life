@@ -17,12 +17,25 @@ class ControlPanel extends Component {
     const loaded = {}
     const cookieVal = {}
     if(soundsJSON.length > 0) {
-      soundsJSON.forEach((sound, i) => {
-        cookieVal[sound.title] = this.props.cookies.get("Sound " + sound.title)
-        volumes[sound.title] =  cookieVal[sound.title] ? cookieVal[sound.title] : sound.volume;
-        playing[sound.title] = false;
-        loaded[sound.title] = false;
-      })
+      if(this.props.sounds) {
+        const decodedObj = JSON.parse(atob(decodeURI(this.props.sounds)))
+        soundsJSON.forEach(sound => {
+          if(decodedObj.hasOwnProperty(sound.title)) {
+            volumes[sound.title] = decodedObj[sound.title];
+          } else {
+            volumes[sound.title] = sound.volume;
+          }
+          playing[sound.title] = false;
+          loaded[sound.title] = false;
+        })
+      } else {
+        soundsJSON.forEach(sound => {
+          cookieVal[sound.title] = this.props.cookies.get("Sound " + sound.title)
+          volumes[sound.title] =  cookieVal[sound.title] ? cookieVal[sound.title] : sound.volume;
+          playing[sound.title] = false;
+          loaded[sound.title] = false;
+        })
+      }
     }
 
     this.state = {
@@ -47,13 +60,22 @@ class ControlPanel extends Component {
 
   componentDidMount() {
     if(this.state.sounds.length > 0) {
-      this.state.sounds.forEach((sound, i) => {
-        const cookieVal = this.props.cookies.get("Sound " + sound.title)
-        // play sounds from cookies
-        if(cookieVal) {
-          this.toggleClip(i, sound.title, true)
-        }
-      })
+      if(this.props.sounds) {
+        const decodedObj = JSON.parse(atob(decodeURI(this.props.sounds)))
+        this.state.sounds.forEach((sound, i) => {
+          if(decodedObj.hasOwnProperty(sound.title)) {
+            this.toggleClip(i, sound.title, true)
+          } 
+        })
+      } else {
+        this.state.sounds.forEach((sound, i) => {
+          const cookieVal = this.props.cookies.get("Sound " + sound.title)
+          // play sounds from cookies
+          if(cookieVal) {
+            this.toggleClip(i, sound.title, true)
+          }
+        })
+      }
     }
   }
 

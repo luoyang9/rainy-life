@@ -34,10 +34,11 @@
     margin: 15px;
     width: calc(100% - 90px);
     height: calc(100% - 60px);
-    max-width: 400px;
-    max-height: 320px;
+    max-width: 450px;
+    max-height: 360px;
     position: relative;
     pointer-events: none;
+    overflow-y: auto;
   }
 
   .AboutPanel-show > .AboutPanel-content {
@@ -66,20 +67,27 @@
     font-size: 14px;
     color: white;
     margin-bottom: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
   }
 
   .AboutPanel-description {
-      font-size: 12px;
-      margin: 2px 0 30px 0;
+      font-size: 10px;
+      margin: 0;
   }
 
   .AboutPanel-feature {
     font-size: 10px;
+    margin: 5px 0;
   }
 
   .AboutPanel-feature > span {
       color: white;
+  }
+
+  .AboutPanel-feature > i {
+      font-size: 12px; 
+      position: relative;
+      top: 2px;
   }
 
   .AboutPanel-suggestion {
@@ -94,6 +102,7 @@
   .AboutPanel-footer {
     font-size: 10px;
     margin-top: 30px;
+    margin-bottom: 0;
     color: white;
   }
 
