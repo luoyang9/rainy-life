@@ -109,7 +109,7 @@ class App extends Component {
   }
 
   toggleShare() {
-    let shareURL = window.location.host + "?";
+    let shareURL = "https://" + window.location.host + "?";
     let urlParams = [];
     if(this.state.url) {
       urlParams.push("u=" + encodeURIComponent(this.state.url));
