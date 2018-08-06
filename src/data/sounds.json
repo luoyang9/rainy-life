@@ -2,7 +2,7 @@
   {
     "title": "rain",
     "src": "https://cdn.rainy.life/sounds/rain.ogg",
-    "thumbnailURL": "thumbnails/rain.jpg",
+    "thumbnailURL": "https://cdn.rainy.life/thumbnails/rain.jpg",
     "volume": 0.5,
     "author": "InspectorJ",
     "source": "https://freesound.org/people/InspectorJ/sounds/401275/"
@@ -10,7 +10,7 @@
   {
     "title": "rain on window",
     "src": "https://cdn.rainy.life/sounds/window.ogg",
-    "thumbnailURL": "thumbnails/rain_window.jpg",
+    "thumbnailURL": "https://cdn.rainy.life/thumbnails/rain_window.jpg",
     "volume": 0.5,
     "author": "InspectorJ",
     "source": "https://freesound.org/people/InspectorJ/sounds/346642/"
@@ -18,7 +18,7 @@
   {
     "title": "rain on umbrella",
     "src": "https://cdn.rainy.life/sounds/rain_umbrella.ogg",
-    "thumbnailURL": "thumbnails/rain_umbrella.jpg",
+    "thumbnailURL": "https://cdn.rainy.life/thumbnails/rain_umbrella.jpg",
     "volume": 0.5,
     "author": "",
     "source": ""
@@ -26,7 +26,7 @@
   {
     "title": "distant thunder",
     "src": "https://cdn.rainy.life/sounds/distant_thunder.ogg",
-    "thumbnailURL": "thumbnails/thunderstorm.jpg",
+    "thumbnailURL": "https://cdn.rainy.life/thumbnails/thunderstorm.jpg",
     "volume": 0.5,
     "author": "",
     "source": ""
@@ -34,7 +34,7 @@
   {
     "title": "urban city",
     "src": "https://cdn.rainy.life/sounds/city_day.ogg",
-    "thumbnailURL": "thumbnails/city_day.jpg",
+    "thumbnailURL": "https://cdn.rainy.life/thumbnails/city_day.jpg",
     "volume": 0.5,
     "author": "",
     "source": ""
@@ -42,7 +42,7 @@
   {
     "title": "city at night",
     "src": "https://cdn.rainy.life/sounds/city_night.ogg",
-    "thumbnailURL": "thumbnails/city_night.jpg",
+    "thumbnailURL": "https://cdn.rainy.life/thumbnails/city_night.jpg",
     "volume": 0.5,
     "author": "",
     "source": ""
@@ -50,7 +50,7 @@
   {
     "title": "fire crackling",
     "src": "https://cdn.rainy.life/sounds/fire.ogg",
-    "thumbnailURL": "thumbnails/fire.jpg",
+    "thumbnailURL": "https://cdn.rainy.life/thumbnails/fire.jpg",
     "volume": 0.5,
     "author": "",
     "source": ""
@@ -58,7 +58,7 @@
   {
     "title": "howling wind",
     "src": "https://cdn.rainy.life/sounds/wind.ogg",
-    "thumbnailURL": "thumbnails/wind.jpg",
+    "thumbnailURL": "https://cdn.rainy.life/thumbnails/wind.jpg",
     "volume": 0.5,
     "author": "",
     "source": ""
