@@ -17,10 +17,10 @@ class ControlPanel extends Component {
     const localVal = {}
     if(soundsJSON.length > 0) {
       if(this.props.sounds) {
-        const decodedObj = JSON.parse(atob(decodeURIComponent(this.props.sounds)))
+        const decodedObj = this.props.sounds.split('s')
         soundsJSON.forEach(sound => {
-          if(decodedObj.hasOwnProperty(sound.id)) {
-            volumes[sound.id] = decodedObj[sound.id];
+          if(decodedObj[sound.id]) {
+            volumes[sound.id] = parseInt(decodedObj[sound.id], 10) / 100.0;
           } else {
             volumes[sound.id] = sound.volume;
           }
@@ -60,9 +60,9 @@ class ControlPanel extends Component {
   componentDidMount() {
     if(this.state.sounds.length > 0) {
       if(this.props.sounds) {
-        const decodedObj = JSON.parse(atob(decodeURIComponent(this.props.sounds)))
+        const decodedObj = this.props.sounds.split('s')
         this.state.sounds.forEach((sound, i) => {
-          if(decodedObj.hasOwnProperty(sound.id)) {
+          if(decodedObj[sound.id]) {
             this.toggleClip(i, sound.id, true)
           } 
         })

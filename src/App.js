@@ -110,25 +110,30 @@ class App extends Component {
   toggleShare() {
     let shareURL = "https://" + window.location.host + "/?";
     let urlParams = [];
-    if(this.state.url) {
-      urlParams.push("u=" + encodeURIComponent(this.state.url));
-    } else if(this.state.activeBackground) {
-      urlParams.push("b=" + this.state.activeBackground);
-    }
+
     const youtubeLocalID = localStorage.getItem("youTubeVideoID")
     if(youtubeLocalID) {
       urlParams.push("v=" + youtubeLocalID)
     }
     
-    const soundParam = {}
+    const soundParam = []
     soundsJSON.forEach(sound => {
       const soundInfo = localStorage.getItem("Sound " + sound.id)
       if(soundInfo) {
-        soundParam[sound.id] = soundInfo
+        soundParam[sound.id] = soundInfo * 100;
+      } else {
+        soundParam[sound.id] = 0;
       }
     })
-    if(Object.keys(soundParam).length > 0) {
-      urlParams.push("s=" + encodeURIComponent(btoa(JSON.stringify(soundParam))))
+    if(soundParam.length > 0) {
+      const soundStr = soundParam.join("s")
+      urlParams.push("s=" + soundStr)
+    }
+    
+    if(this.state.url) {
+      urlParams.push("u=" + encodeURIComponent(this.state.url));
+    } else if(this.state.activeBackground) {
+      urlParams.push("b=" + this.state.activeBackground);
     }
 
     shareURL += urlParams.join("&")
