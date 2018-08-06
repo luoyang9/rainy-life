@@ -84,7 +84,7 @@ class ControlPanel extends Component {
     const loaded = this.state.loaded;
     playing[title] = !playing[title];
     if(playing[title] && !init) {
-      this.props.cookies.set("Sound " + title, this.state.volumes[title], {domain: "rainy.life"})
+      this.props.cookies.set("Sound " + title, this.state.volumes[title], {domain: "www.rainy.life"})
     } else if(!init){
       this.props.cookies.remove("Sound " + title)
     }
@@ -106,7 +106,7 @@ class ControlPanel extends Component {
     this.setState({volumes: volumes});
     this.props.audioManager.setClipVolume(title, this.state.volumes[title])
     if(this.props.cookies.get("Sound " + title)) {
-      this.props.cookies.set("Sound " + title, this.state.volumes[title], {domain: "rainy.life"})
+      this.props.cookies.set("Sound " + title, this.state.volumes[title], {domain: "www.rainy.life"})
     }
   }
 
