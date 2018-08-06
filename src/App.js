@@ -44,7 +44,7 @@ class App extends Component {
       } else if(keyVal[0] === "b") {
         background = keyVal[1]
       } else if(keyVal[0] === "u") {
-        backgroundUrl = decodeURI(keyVal[1])
+        backgroundUrl = decodeURIComponent(keyVal[1])
       } else if(keyVal[0] === "s") {
         sounds = keyVal[1]
       }
@@ -112,7 +112,7 @@ class App extends Component {
     let shareURL = window.location.host + "?";
     let urlParams = [];
     if(this.state.url) {
-      urlParams.push("u=" + encodeURI(this.state.url));
+      urlParams.push("u=" + encodeURIComponent(this.state.url));
     } else if(this.state.activeBackground) {
       urlParams.push("b=" + this.state.activeBackground);
     }
@@ -129,7 +129,7 @@ class App extends Component {
       }
     })
     if(Object.keys(soundParam).length > 0) {
-      urlParams.push("s=" + encodeURI(btoa(JSON.stringify(soundParam))))
+      urlParams.push("s=" + encodeURIComponent(btoa(JSON.stringify(soundParam))))
     }
 
     shareURL += urlParams.join("&")

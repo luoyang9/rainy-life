@@ -18,7 +18,7 @@ class ControlPanel extends Component {
     const cookieVal = {}
     if(soundsJSON.length > 0) {
       if(this.props.sounds) {
-        const decodedObj = JSON.parse(atob(decodeURI(this.props.sounds)))
+        const decodedObj = JSON.parse(atob(decodeURIComponent(this.props.sounds)))
         soundsJSON.forEach(sound => {
           if(decodedObj.hasOwnProperty(sound.title)) {
             volumes[sound.title] = decodedObj[sound.title];
@@ -61,7 +61,7 @@ class ControlPanel extends Component {
   componentDidMount() {
     if(this.state.sounds.length > 0) {
       if(this.props.sounds) {
-        const decodedObj = JSON.parse(atob(decodeURI(this.props.sounds)))
+        const decodedObj = JSON.parse(atob(decodeURIComponent(this.props.sounds)))
         this.state.sounds.forEach((sound, i) => {
           if(decodedObj.hasOwnProperty(sound.title)) {
             this.toggleClip(i, sound.title, true)
