@@ -71,11 +71,11 @@ class MusicPanel extends Component {
     } catch(e) {
       this.setState({youTubeError: "Please check your URL's formatting"})
     }
-    console.log(videoId)
+    
     let youTubeOptions = this.state.youTubeOptions
     youTubeOptions.playerVars.autoplay = 1
     this.setState({youTubeError: "", youTubeVideoID: videoId, youTubeOptions: youTubeOptions})
-    this.props.cookies.set('youTubeVideoID', videoId)
+    this.props.cookies.set('youTubeVideoID', videoId, {domain: "rainy.life"})
   }
 
   render() {
