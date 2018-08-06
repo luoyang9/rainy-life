@@ -131,7 +131,7 @@ class ControlPanel extends Component {
   submitCustomBackground() {
     let input = this.state.customBackgroundInput.trim();
     if(input === "") {
-      this.setState({customBackgroundError: "Please enter a valid direct link to an image (.png, .jpg, .gif)"})
+      this.setState({customBackgroundError: "please enter a valid direct link to an image (.png, .jpg, .gif)"})
       return
     }
     if(input.substring(0, 4) !== "http") {
@@ -145,7 +145,7 @@ class ControlPanel extends Component {
     try {
       new URL(input);
     } catch(e) {
-      this.setState({customBackgroundError: "Please check your URL's formatting"})
+      this.setState({customBackgroundError: "please check your URL's formatting"})
     }
     this.setState({customBackgroundError: ""})
     this.props.setCustomBackground(input)
@@ -199,7 +199,7 @@ class ControlPanel extends Component {
                 <div className="ControlPanel-custom-input">
                   <input type="text" 
                     className="ControlPanel-custom-textbox" 
-                    placeholder="Enter a direct link to an image here"
+                    placeholder="enter a direct link to an image here"
                     value={this.state.customBackgroundInput} 
                     onChange={this.onInputChange} 
                     onKeyDown={this.onInputKeyDown}/>

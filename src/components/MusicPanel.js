@@ -93,7 +93,7 @@ class MusicPanel extends Component {
               <div className="MusicPanel-YT-input">
                 <input type="text" 
                   className="MusicPanel-YT-textbox" 
-                  placeholder="YouTube Video URL" 
+                  placeholder="enter a youtube video url here" 
                   value={this.state.youTubeVideoIDInput} 
                   onChange={this.onInputChange} 
                   onKeyDown={this.onInputKeyDown}/>
