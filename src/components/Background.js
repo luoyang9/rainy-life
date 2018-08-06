@@ -18,10 +18,10 @@ class Background extends Component {
       <div>
         {
           this.state.backgrounds.length > 0 && this.state.backgrounds.map(background => {
-            return <PreloadImage key={background.title} 
+            return <PreloadImage key={background.id} 
               srcPreload={background.thumbnailURL} 
               srcLoaded={background.backgroundURL}
-              className={this.props.activeBackground === background.title ? "Background Background-show" : "Background"} 
+              className={this.props.activeBackground === background.id ? "Background Background-show" : "Background"} 
             />
           })
         }

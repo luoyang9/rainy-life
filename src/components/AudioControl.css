@@ -43,3 +43,20 @@
     width: 12px;
     height: 12px;
 }
+
+
+@media only screen and (max-width: 400px)  {
+    .rc-slider-handle {
+        width: 8px;
+        height: 8px;
+    }
+
+    .rc-slider-rail {
+        height: 2px;
+    }
+
+    .rc-slider-track {
+        height: 2px;
+    }
+  }
+  

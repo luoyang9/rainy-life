@@ -23,7 +23,7 @@ class App extends Component {
     let firstTime = true;
     let preset = false
     for(var i = 0; i < backgroundsJSON.length; i++) {
-      if(cookieBackground === backgroundsJSON[i].title) preset = true
+      if(cookieBackground === backgroundsJSON[i].id) preset = true
     }
     if(this.props.cookies.get("firsttime")) {
       firstTime = false;
@@ -51,7 +51,7 @@ class App extends Component {
     })
 
     this.state = {
-      activeBackground: background ? background : ((!backgroundUrl && preset) ? cookieBackground : "forest"),
+      activeBackground: background ? background : ((!backgroundUrl && preset) ? cookieBackground : 0),
       url: backgroundUrl ? backgroundUrl : ((!background && !preset) ? cookieBackground : ""),
       audioManager: new AudioManager(),
       controlPanelClass: "",
@@ -73,9 +73,9 @@ class App extends Component {
     this.toggleShare = this.toggleShare.bind(this)
   }
 
-  changeBackground(title) {
-    this.setState({activeBackground: title, url: ""});
-    this.props.cookies.set('background', title);
+  changeBackground(id) {
+    this.setState({activeBackground: id, url: ""});
+    this.props.cookies.set('background', id);
   }
 
   setCustomBackground(url) {
@@ -123,9 +123,9 @@ class App extends Component {
     
     const soundParam = {}
     soundsJSON.forEach(sound => {
-      const soundInfo = this.props.cookies.get("Sound " + sound.title)
+      const soundInfo = this.props.cookies.get("Sound " + sound.id)
       if(soundInfo) {
-        soundParam[sound.title] = soundInfo
+        soundParam[sound.id] = soundInfo
       }
     })
     if(Object.keys(soundParam).length > 0) {

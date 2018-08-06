@@ -20,20 +20,20 @@ class ControlPanel extends Component {
       if(this.props.sounds) {
         const decodedObj = JSON.parse(atob(decodeURIComponent(this.props.sounds)))
         soundsJSON.forEach(sound => {
-          if(decodedObj.hasOwnProperty(sound.title)) {
-            volumes[sound.title] = decodedObj[sound.title];
+          if(decodedObj.hasOwnProperty(sound.id)) {
+            volumes[sound.id] = decodedObj[sound.id];
           } else {
-            volumes[sound.title] = sound.volume;
+            volumes[sound.id] = sound.volume;
           }
-          playing[sound.title] = false;
-          loaded[sound.title] = false;
+          playing[sound.id] = false;
+          loaded[sound.id] = false;
         })
       } else {
         soundsJSON.forEach(sound => {
-          cookieVal[sound.title] = this.props.cookies.get("Sound " + sound.title)
-          volumes[sound.title] =  cookieVal[sound.title] ? cookieVal[sound.title] : sound.volume;
-          playing[sound.title] = false;
-          loaded[sound.title] = false;
+          cookieVal[sound.id] = this.props.cookies.get("Sound " + sound.id)
+          volumes[sound.id] =  cookieVal[sound.id] ? cookieVal[sound.id] : sound.volume;
+          playing[sound.id] = false;
+          loaded[sound.id] = false;
         })
       }
     }
@@ -63,55 +63,55 @@ class ControlPanel extends Component {
       if(this.props.sounds) {
         const decodedObj = JSON.parse(atob(decodeURIComponent(this.props.sounds)))
         this.state.sounds.forEach((sound, i) => {
-          if(decodedObj.hasOwnProperty(sound.title)) {
-            this.toggleClip(i, sound.title, true)
+          if(decodedObj.hasOwnProperty(sound.id)) {
+            this.toggleClip(i, sound.id, true)
           } 
         })
       } else {
         this.state.sounds.forEach((sound, i) => {
-          const cookieVal = this.props.cookies.get("Sound " + sound.title)
+          const cookieVal = this.props.cookies.get("Sound " + sound.id)
           // play sounds from cookies
           if(cookieVal) {
-            this.toggleClip(i, sound.title, true)
+            this.toggleClip(i, sound.id, true)
           }
         })
       }
     }
   }
 
-  toggleClip(i, title, init) {
+  toggleClip(i, id, init) {
     const playing = this.state.playing;
     const loaded = this.state.loaded;
-    playing[title] = !playing[title];
-    if(playing[title] && !init) {
-      this.props.cookies.set("Sound " + title, this.state.volumes[title])
+    playing[id] = !playing[id];
+    if(playing[id] && !init) {
+      this.props.cookies.set("Sound " + id, this.state.volumes[id])
     } else if(!init){
-      this.props.cookies.remove("Sound " + title)
+      this.props.cookies.remove("Sound " + id)
     }
 
-    if(!loaded[title]) {
+    if(!loaded[id]) {
       this.props.audioManager.loadClip(this.state.sounds[i], () => {
         const loaded = this.state.loaded;
-        loaded[title] = true;
+        loaded[id] = true;
         this.setState({loaded: loaded})
       });
     }
-    this.props.audioManager.playPauseClip(title, this.state.volumes[title])
+    this.props.audioManager.playPauseClip(id, this.state.volumes[id])
     this.setState({playing: playing})
   }
 
-  volumeChange(title, val) {
+  volumeChange(id, val) {
     const volumes = this.state.volumes;
-    volumes[title] = val / 100;
+    volumes[id] = val / 100;
     this.setState({volumes: volumes});
-    this.props.audioManager.setClipVolume(title, this.state.volumes[title])
-    if(this.props.cookies.get("Sound " + title)) {
-      this.props.cookies.set("Sound " + title, this.state.volumes[title])
+    this.props.audioManager.setClipVolume(id, this.state.volumes[id])
+    if(this.props.cookies.get("Sound " + id)) {
+      this.props.cookies.set("Sound " + id, this.state.volumes[id])
     }
   }
 
-  onThumbnailEnter(title) {
-    this.setState({thumbnailHover: title})
+  onThumbnailEnter(id) {
+    this.setState({thumbnailHover: id})
   }
 
   onThumbnailExit() {
@@ -167,23 +167,23 @@ class ControlPanel extends Component {
               {
                 this.state.sounds.length > 0 && this.state.sounds.map((sound, i) => {
                   return (
-                    <div className="ControlPanel-cell" key={sound.title}>
+                    <div className="ControlPanel-cell" key={sound.id}>
                       <div className="ControlPanel-thumbnail-container">
                         <img alt={sound.title} src={sound.thumbnailURL} className="ControlPanel-thumbnail" />
                         <div className="ControlPanel-sound-container">
                           <p className="ControlPanel-sound-title">{sound.title}</p>
                           {
-                            this.state.playing[sound.title] && !this.state.loaded[sound.title] ? <div className="ControlPanel-sound-load">
+                            this.state.playing[sound.id] && !this.state.loaded[sound.id] ? <div className="ControlPanel-sound-load">
                               <div className="ControlPanel-sound-load-block ControlPanel-sound-load-block-1"></div>
                               <div className="ControlPanel-sound-load-block ControlPanel-sound-load-block-2"></div>
                               <div className="ControlPanel-sound-load-block ControlPanel-sound-load-block-3"></div>
                             </div> :
-                            <i onClick={() => this.toggleClip(i, sound.title)} className="material-icons ControlPanel-sound-play">
-                              { this.state.playing[sound.title] ? "pause" : "play_arrow" }
+                            <i onClick={() => this.toggleClip(i, sound.id)} className="material-icons ControlPanel-sound-play">
+                              { this.state.playing[sound.id] ? "pause" : "play_arrow" }
                             </i>
                           }
                           
-                          <Slider className="ControlPanel-sound-slider" value={this.state.volumes[sound.title] * 100} onChange={val => this.volumeChange(sound.title, val)} />
+                          <Slider className="ControlPanel-sound-slider" value={this.state.volumes[sound.id] * 100} onChange={val => this.volumeChange(sound.id, val)} />
                         </div>
                       </div>
                     </div>
@@ -194,7 +194,7 @@ class ControlPanel extends Component {
           </TabPanel>
           <TabPanel>
             <div className="ControlPanel-scroll">
-              <h5 className="ControlPanel-subheader">custom background</h5>
+              <h5 className="ControlPanel-subheader" style={{marginTop: 10}}>custom background</h5>
               <div className="ControlPanel-custom-background">
                 <div className="ControlPanel-custom-input">
                   <input type="text" 
@@ -211,16 +211,16 @@ class ControlPanel extends Component {
               {
                 this.state.backgrounds.length > 0 && this.state.backgrounds.map(background => {
                   return (
-                    <div key={background.title} 
-                      onMouseEnter={() => this.onThumbnailEnter(background.title)}
+                    <div key={background.id} 
+                      onMouseEnter={() => this.onThumbnailEnter(background.id)}
                       onMouseLeave={this.onThumbnailExit}
                       className="ControlPanel-cell">
-                      <div onClick={() => this.props.changeBackground(background.title)} className="ControlPanel-thumbnail-container">
+                      <div onClick={() => this.props.changeBackground(background.id)} className="ControlPanel-thumbnail-container">
                         <img alt={background.title} src={background.thumbnailURL} className="ControlPanel-thumbnail" />
                       </div>
                       <p 
                         className={
-                          "ControlPanel-thumbnail-title" + (this.state.thumbnailHover === background.title ? " ControlPanel-thumbnail-title-hover" : "")
+                          "ControlPanel-thumbnail-title" + (this.state.thumbnailHover === background.id ? " ControlPanel-thumbnail-title-hover" : "")
                         }
                       >{background.title}</p>
                       <a

@@ -9,58 +9,60 @@ export default class AudioManager {
   }
 
   loadClip(clip, callback) {
-    if(!this.sounds.hasOwnProperty(clip.title)) {
-      this.sounds[clip.title] = new Howl({
+    if(!this.sounds.hasOwnProperty(clip.id)) {
+      this.sounds[clip.id] = new Howl({
         src: [clip.src],
         loop: true,
         volume: clip.volume,
         onload: callback,
         onfade: () => {
-          if(this.instances.hasOwnProperty(clip.title) && this.sounds[clip.title].volume() === 0){
-            this.pauseClip(clip.title)
+          if(this.instances.hasOwnProperty(clip.id) && this.sounds[clip.id].volume() === 0){
+            this.pauseClip(clip.id)
           }
         }
       });
     }
   }
 
-  playPauseClip(title, vol) {
-    if(this.instances.hasOwnProperty(title)) {
-      if(this.sounds[title].playing(this.instances[title])) {
-        this.sounds[title].fade(this.sounds[title].volume(), 0, 500)
+  playPauseClip(id, vol) {
+    if(this.instances.hasOwnProperty(id)) {
+      if(this.sounds[id].playing(this.instances[id])) {
+        this.sounds[id].fade(this.sounds[id].volume(), 0, 500)
       } else {
-        this.sounds[title].fade(0, vol, 500)
-        this.resumeClip(title)
+        this.sounds[id].fade(0, vol, 500)
+        this.resumeClip(id)
       }
     } else {
-      this.setClipVolume(title, 0)
-      this.playClip(title)
-      this.sounds[title].fade(0, vol, 500)
+      this.setClipVolume(id, 0)
+      this.playClip(id)
+      this.sounds[id].fade(0, vol, 500)
     }
   }
 
-  pauseClip(title) {
-    this.sounds[title].pause(this.instances[title]);
+  pauseClip(id) {
+    this.sounds[id].pause(this.instances[id]);
   }
 
-  setClipVolume(title, vol) {
-    this.sounds[title].volume(vol, this.instances[title]);
+  setClipVolume(id, vol) {
+    if(this.sounds.hasOwnProperty(id)) {
+      this.sounds[id].volume(vol, this.instances[id]);
+    }
   }
 
-  resumeClip(title) {
-    this.sounds[title].play(this.instances[title]);
+  resumeClip(id) {
+    this.sounds[id].play(this.instances[id]);
   }
 
-  playClip(title) {
-    this.instances[title] = this.sounds[title].play();
+  playClip(id) {
+    this.instances[id] = this.sounds[id].play();
   }
 
   playPauseGlobal(play) {
-    Object.keys(this.instances).forEach(title => {
+    Object.keys(this.instances).forEach(id => {
       if(play) {
-        this.playClip(title)
+        this.playClip(id)
       } else {
-        this.pauseClip(title)
+        this.pauseClip(id)
       }
     })
   }

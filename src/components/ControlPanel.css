@@ -3,14 +3,12 @@
   right: 0;
   bottom: 40px;
   margin: 15px;
-  background-color: rgba(12, 12, 12, 0.9);
-  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(20, 20, 20, 0.95);
+  color: white;
   letter-spacing: 1px;
   width: calc(100% - 30px);
-  height: calc(100% - 30px);
+  height: calc(100% - 90px);
   max-width: 550px;
-  max-height: 550px;
-  border: 0px solid black;
   border-radius: 3px;
   opacity: 0;
   pointer-events: none;
@@ -32,8 +30,8 @@
 }
 
 .ControlPanel-scroll {
-  max-height: 492px;
-  padding: 0 5%;
+  height: calc(100% - 30px);
+  padding: 15px 5%;
   overflow-y: auto;
 }
 
@@ -73,7 +71,6 @@
 .ControlPanel-cell {
   width: 45%;
   float: left;
-  height: 23%;
   margin: 2.5%;
   text-align: center;
 }
@@ -84,7 +81,6 @@
   position: absolute;
   left: 0;
   z-index: -1;
-  border: 0px solid white;
   border-radius: 3px;
 }
 
@@ -100,7 +96,7 @@
   width: 100%;
   margin: 15px 0 0 0;
   font-size: 12px;
-  color: #b5b5b5;
+  color: white;
 
   position: relative;
   top: 7px;
@@ -116,7 +112,7 @@
   margin-bottom: 0 0 15px 0;
   font-size: 10px;
   text-decoration: none;
-  color: #b5b5b5;
+  color: white;
   pointer-events: none;
 
   position: relative;
@@ -142,7 +138,7 @@
 
 .ControlPanel-sound-title {
   font-size: 12px;
-  margin-top: 5%;
+  margin-top: 7%;
   margin-bottom: 3%;
   margin-left: 1%;
   margin-right: 1%;
@@ -150,6 +146,7 @@
 
 .ControlPanel-sound-play {
   cursor: pointer;
+  margin: 1% 0 2% 0;
 
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -159,6 +156,7 @@
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
+
 .ControlPanel-sound-slider {
   margin: 0 5%;
   width: 90%;
@@ -168,11 +166,16 @@
   align-items: center; 
 }
 
+.react-tabs {
+  height: 100%;
+}
+
 .react-tabs__tab-list {
+  background-color: rgb(12, 12, 12);
   font-size: 14px;
   margin: 0;
   padding: 1em 5px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.3);
 }
 
 .react-tabs__tab {
@@ -185,6 +188,7 @@
   padding: 6px 12px;
   cursor: pointer;
   font-weight: bold;
+  color: #a5a5a5;
 }
 
 .react-tabs__tab:hover {
@@ -206,6 +210,7 @@
 
 .react-tabs__tab-panel--selected {
   display: block;
+  height: calc(100% - 58px);
 }
 
 .ControlPanel-sound-load{
@@ -332,4 +337,28 @@
 		-moz-transform:scale(0.7);
 		opacity:0.1;
 	}
+}
+
+
+@media only screen and (max-width: 400px)  {
+  .ControlPanel-cell {
+    height: 25%;
+  }
+  .ControlPanel-sound-play {
+    font-size: 18px;
+    margin: 5% 0 10% 0;
+  }
+  .ControlPanel-sound-title {
+    font-size: 10px;
+  }
+
+  .ControlPanel-sound-slider {
+    height: 10px;
+  }
+  .ControlPanel-thumbnail-title {
+    margin-top: 0;
+  }
+  .ControlPanel-thumbnail-container {
+    padding-bottom: 70%;
+  }
 }
