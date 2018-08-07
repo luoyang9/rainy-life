@@ -27,6 +27,7 @@ class MusicPanel extends Component {
         }
       }
     }
+    this.props.setYoutubeId(this.state.youTubeVideoID)
 
     this.onInputChange = this.onInputChange.bind(this)
     this.onInputKeyDown = this.onInputKeyDown.bind(this)

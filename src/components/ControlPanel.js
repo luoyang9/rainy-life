@@ -16,11 +16,12 @@ class ControlPanel extends Component {
     const loaded = {}
     const localVal = {}
     if(soundsJSON.length > 0) {
-      if(this.props.sounds) {
-        const decodedObj = this.props.sounds.split('s')
+      if(this.props.soundsUrlParam) {
+        const decodedObj = this.props.soundsUrlParam.split('s')
         soundsJSON.forEach(sound => {
-          if(decodedObj[sound.id]) {
-            volumes[sound.id] = parseInt(decodedObj[sound.id], 10) / 100.0;
+          const decodedVol = parseInt(decodedObj[sound.id], 10) / 100.0;
+          if(decodedVol !== 0) {
+            volumes[sound.id] = decodedVol;
           } else {
             volumes[sound.id] = sound.volume;
           }
@@ -36,6 +37,8 @@ class ControlPanel extends Component {
         })
       }
     }
+    this.props.setVolumes(volumes)
+    this.props.setPlaying(playing)
 
     this.state = {
       backgrounds: backgroundsJSON,
@@ -59,10 +62,10 @@ class ControlPanel extends Component {
 
   componentDidMount() {
     if(this.state.sounds.length > 0) {
-      if(this.props.sounds) {
-        const decodedObj = this.props.sounds.split('s')
+      if(this.props.soundsUrlParam) {
+        const decodedObj = this.props.soundsUrlParam.split('s')
         this.state.sounds.forEach((sound, i) => {
-          if(decodedObj[sound.id]) {
+          if(parseInt(decodedObj[sound.id], 10) !== 0) {
             this.toggleClip(i, sound.id, true)
           } 
         })
@@ -97,16 +100,18 @@ class ControlPanel extends Component {
     }
     this.props.audioManager.playPauseClip(id, this.state.volumes[id])
     this.setState({playing: playing})
+    this.props.setPlaying(playing)
   }
 
   volumeChange(id, val) {
     const volumes = this.state.volumes;
     volumes[id] = val / 100;
-    this.setState({volumes: volumes});
-    this.props.audioManager.setClipVolume(id, this.state.volumes[id])
+    this.props.audioManager.setClipVolume(id, volumes[id])
     if(localStorage.getItem("Sound " + id)) {
-      localStorage.setItem("Sound " + id, this.state.volumes[id])
+      localStorage.setItem("Sound " + id, volumes[id])
     }
+    this.setState({volumes: volumes});
+    this.props.setVolumes(volumes)
   }
 
   onThumbnailEnter(id) {
