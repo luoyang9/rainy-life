@@ -21,7 +21,7 @@ class App extends Component {
     let firstTime = true;
     let preset = false
     for(var i = 0; i < backgroundsJSON.length; i++) {
-      if(localBackground === backgroundsJSON[i].id) preset = true
+      if(parseInt(localBackground, 10) === backgroundsJSON[i].id) preset = true
     }
     if(localStorage.getItem("firsttime")) {
       firstTime = false;
@@ -49,7 +49,7 @@ class App extends Component {
     })
 
     this.state = {
-      activeBackground: background ? parseInt(background, 10) : ((!backgroundUrl && preset) ? localBackground : 0),
+      activeBackground: background ? parseInt(background, 10) : ((!backgroundUrl && preset) ? parseInt(localBackground, 10) : 0),
       url: backgroundUrl ? backgroundUrl : ((!background && !preset) ? localBackground : ""),
       audioManager: new AudioManager(),
       controlPanelClass: "",
