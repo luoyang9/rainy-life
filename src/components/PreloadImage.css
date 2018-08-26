@@ -16,6 +16,7 @@
   left: 0;
 
   background-size: cover;
+  filter: blur(5px);
 }
 
 .PreloadImage-loaded {
