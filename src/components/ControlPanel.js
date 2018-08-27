@@ -12,7 +12,7 @@ class ControlPanel extends Component {
 
     this.state = {
       thumbnailHover: "",
-      customBackgroundInput: this.props.backgroundsStore.customBackgroundUrl,
+      customBackgroundInput: this.props.backgroundsStore.customBackgroundUrl ? this.props.backgroundsStore.customBackgroundUrl : "",
       customBackgroundError: ""
     }
     
