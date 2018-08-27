@@ -1,34 +1,27 @@
 import React, { Component } from 'react';
+import { observer } from 'mobx-react';
 import PreloadImage from './PreloadImage';
 import './Background.css';
-import backgroundsJSON from '../data/backgrounds.json';
 
+@observer
 class Background extends Component {
-
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      backgrounds: backgroundsJSON
-    }
-  }
-  
   render() {
+    const store = this.props.backgroundsStore;
     return (
       <div>
         {
-          this.state.backgrounds.length > 0 && this.state.backgrounds.map(background => {
+          store.backgrounds.length > 0 && store.backgrounds.map(background => {
             return <PreloadImage key={background.id} 
               srcPreload={background.thumbnailURL} 
               srcLoaded={background.backgroundURL}
-              className={this.props.activeBackground === background.id ? "Background Background-show" : "Background"} 
+              className={store.activeBackground === background.id && !store.customBackgroundUrl ? "Background Background-show" : "Background"} 
             />
           })
         }
         <div 
-          className={this.props.url ? "Background Background-show" : "Background"} 
+          className={store.customBackgroundUrl ? "Background Background-show" : "Background"} 
           style={{
-            backgroundImage: `url(${this.props.url})`,
+            backgroundImage: `url(${store.customBackgroundUrl})`,
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat"

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { observer } from 'mobx-react';
 import ClipboardJS from 'clipboard';
 import './SharePanel.css';
 
+@observer
 class SharePanel extends Component {
-
   constructor(props) {
     super(props)
 
@@ -24,30 +25,24 @@ class SharePanel extends Component {
   generateShareURL(props) {
     let shareURL = "https://" + window.location.host + "/?";
     let urlParams = [];
+    let soundsStore = props.soundsStore;
+    let backgroundsStore = props.backgroundsStore;
 
-    if(props.youtubeID) {
-      urlParams.push("v=" + props.youtubeID)
+    if(soundsStore.youtubeVideoID) {
+      urlParams.push("v=" + soundsStore.youtubeVideoID)
     }
     
     const soundParam = []
-    if(props.playing) {
-      for(var id in props.playing) {
-        if(props.playing[id]) {
-          soundParam[id] = props.volumes[id]
-        } else {
-          soundParam[id] = 0;
-        }
-      }
+    for(let i = 0; i < soundsStore.sounds.length; i++) {
+      const sound = soundsStore.sounds[i];
+      soundParam[sound.id] = sound.playing ? sound.volume : 0;
     }
-    if(soundParam.length > 0) {
-      const soundStr = soundParam.join("s")
-      urlParams.push("s=" + soundStr)
-    }
+    urlParams.push("s=" + soundParam.join("s"))
     
-    if(this.props.url) {
-      urlParams.push("u=" + encodeURIComponent(this.props.url));
-    } else if(this.props.background !== null) {
-      urlParams.push("b=" + this.props.background);
+    if(backgroundsStore.customBackgroundUrl) {
+      urlParams.push("u=" + encodeURIComponent(backgroundsStore.customBackgroundUrl));
+    } else if(backgroundsStore.activeBackground !== null) {
+      urlParams.push("b=" + backgroundsStore.activeBackground);
     }
 
     shareURL += urlParams.join("&")

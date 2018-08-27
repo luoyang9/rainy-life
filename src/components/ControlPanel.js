@@ -1,117 +1,26 @@
 import React, { Component } from 'react';
+import { observer } from 'mobx-react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Slider from 'rc-slider/lib/Slider';
 import 'rc-slider/assets/index.css';
 import './ControlPanel.css';
-import backgroundsJSON from '../data/backgrounds.json';
-import soundsJSON from '../data/sounds.json';
 
+@observer
 class ControlPanel extends Component {
-
   constructor(props) {
     super(props)
 
-    const volumes = {}
-    const playing = {}
-    const loaded = {}
-    const localVal = {}
-    if(soundsJSON.length > 0) {
-      if(this.props.soundsUrlParam) {
-        const decodedObj = this.props.soundsUrlParam.split('s')
-        soundsJSON.forEach(sound => {
-          const decodedVol = parseInt(decodedObj[sound.id], 10) / 100.0;
-          if(decodedVol !== 0) {
-            volumes[sound.id] = decodedVol;
-          } else {
-            volumes[sound.id] = sound.volume;
-          }
-          playing[sound.id] = false;
-          loaded[sound.id] = false;
-        })
-      } else {
-        soundsJSON.forEach(sound => {
-          localVal[sound.id] = localStorage.getItem("Sound " + sound.id)
-          volumes[sound.id] =  localVal[sound.id] ? localVal[sound.id] : sound.volume;
-          playing[sound.id] = false;
-          loaded[sound.id] = false;
-        })
-      }
-    }
-    this.props.setVolumes(volumes)
-    this.props.setPlaying(playing)
-
     this.state = {
-      backgrounds: backgroundsJSON,
-      sounds: soundsJSON,
-      volumes: volumes,
-      playing: playing,
-      loaded: loaded,
       thumbnailHover: "",
-      customBackgroundInput: this.props.customBackgroundInput || "",
+      customBackgroundInput: this.props.backgroundsStore.customBackgroundUrl,
       customBackgroundError: ""
     }
-
-    this.volumeChange = this.volumeChange.bind(this);
-    this.toggleClip = this.toggleClip.bind(this);
+    
     this.onThumbnailEnter = this.onThumbnailEnter.bind(this);
     this.onThumbnailExit = this.onThumbnailExit.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
     this.onInputKeyDown = this.onInputKeyDown.bind(this);
     this.submitCustomBackground = this.submitCustomBackground.bind(this);
-  }
-
-  componentDidMount() {
-    if(this.state.sounds.length > 0) {
-      if(this.props.soundsUrlParam) {
-        const decodedObj = this.props.soundsUrlParam.split('s')
-        this.state.sounds.forEach((sound, i) => {
-          if(parseInt(decodedObj[sound.id], 10) !== 0) {
-            this.toggleClip(i, sound.id, true)
-          } 
-        })
-      } else {
-        this.state.sounds.forEach((sound, i) => {
-          const localVal = localStorage.getItem("Sound " + sound.id)
-          // play sounds from local storage
-          if(localVal) {
-            this.toggleClip(i, sound.id, true)
-          }
-        })
-      }
-    }
-  }
-
-  toggleClip(i, id, init) {
-    const playing = this.state.playing;
-    const loaded = this.state.loaded;
-    playing[id] = !playing[id];
-    if(playing[id] && !init) {
-      localStorage.setItem("Sound " + id, this.state.volumes[id])
-    } else if(!init){
-      localStorage.removeItem("Sound " + id)
-    }
-
-    if(!loaded[id]) {
-      this.props.audioManager.loadClip(this.state.sounds[i], () => {
-        const loaded = this.state.loaded;
-        loaded[id] = true;
-        this.setState({loaded: loaded})
-      });
-    }
-    this.props.audioManager.playPauseClip(id, this.state.volumes[id])
-    this.setState({playing: playing})
-    this.props.setPlaying(playing)
-  }
-
-  volumeChange(id, val) {
-    const volumes = this.state.volumes;
-    volumes[id] = val / 100;
-    this.props.audioManager.setClipVolume(id, volumes[id])
-    if(localStorage.getItem("Sound " + id)) {
-      localStorage.setItem("Sound " + id, volumes[id])
-    }
-    this.setState({volumes: volumes});
-    this.props.setVolumes(volumes)
   }
 
   onThumbnailEnter(id) {
@@ -150,13 +59,16 @@ class ControlPanel extends Component {
       new URL(input);
     } catch(e) {
       this.setState({customBackgroundError: "please check your URL's formatting"})
+      return
     }
     this.setState({customBackgroundError: ""})
-    this.props.setCustomBackground(input)
+    this.props.backgroundsStore.setCustomBackground(input)
   }
 
   render() {
     const className = this.props.className;
+    const soundsStore = this.props.soundsStore;
+    const backgroundsStore = this.props.backgroundsStore;
 
     return (
       <div className={"ControlPanel " + className}>
@@ -165,11 +77,10 @@ class ControlPanel extends Component {
             <Tab>sounds</Tab>
             <Tab>backgrounds</Tab>
           </TabList>
-      
           <TabPanel>
             <div className="ControlPanel-scroll">
               {
-                this.state.sounds.length > 0 && this.state.sounds.map((sound, i) => {
+                soundsStore.sounds.length > 0 && soundsStore.sounds.map(sound => {
                   return (
                     <div className="ControlPanel-cell" key={sound.id}>
                       <div className="ControlPanel-thumbnail-container">
@@ -177,17 +88,18 @@ class ControlPanel extends Component {
                         <div className="ControlPanel-sound-container">
                           <p className="ControlPanel-sound-title">{sound.title}</p>
                           {
-                            this.state.playing[sound.id] && !this.state.loaded[sound.id] ? <div className="ControlPanel-sound-load">
-                              <div className="ControlPanel-sound-load-block ControlPanel-sound-load-block-1"></div>
-                              <div className="ControlPanel-sound-load-block ControlPanel-sound-load-block-2"></div>
-                              <div className="ControlPanel-sound-load-block ControlPanel-sound-load-block-3"></div>
-                            </div> :
-                            <i onClick={() => this.toggleClip(i, sound.id)} className="material-icons ControlPanel-sound-play">
-                              { this.state.playing[sound.id] ? "pause" : "play_arrow" }
-                            </i>
+                            sound.playing && !sound.loaded 
+                              ? <div className="ControlPanel-sound-load">
+                                  <div className="ControlPanel-sound-load-block ControlPanel-sound-load-block-1"></div>
+                                  <div className="ControlPanel-sound-load-block ControlPanel-sound-load-block-2"></div>
+                                  <div className="ControlPanel-sound-load-block ControlPanel-sound-load-block-3"></div>
+                                </div> 
+                              : <i onClick={() => soundsStore.toggleSound(sound.id)} className="material-icons ControlPanel-sound-play">
+                                  { sound.playing ? "pause" : "play_arrow" }
+                                </i>
                           }
                           
-                          <Slider className="ControlPanel-sound-slider" value={this.state.volumes[sound.id] * 100} onChange={val => this.volumeChange(sound.id, val)} />
+                          <Slider className="ControlPanel-sound-slider" value={sound.volume * 100} onChange={val => soundsStore.changeVolume(sound.id, val)} />
                         </div>
                       </div>
                     </div>
@@ -213,13 +125,13 @@ class ControlPanel extends Component {
               </div>
               <h5 className="ControlPanel-subheader">presets</h5>
               {
-                this.state.backgrounds.length > 0 && this.state.backgrounds.map(background => {
+                backgroundsStore.backgrounds.length > 0 && backgroundsStore.backgrounds.map(background => {
                   return (
                     <div key={background.id} 
                       onMouseEnter={() => this.onThumbnailEnter(background.id)}
                       onMouseLeave={this.onThumbnailExit}
                       className="ControlPanel-cell">
-                      <div onClick={() => this.props.changeBackground(background.id)} className="ControlPanel-thumbnail-container">
+                      <div onClick={() => backgroundsStore.changeBackground(background.id)} className="ControlPanel-thumbnail-container">
                         <img alt={background.title} src={background.thumbnailURL} className="ControlPanel-thumbnail" />
                       </div>
                       <p 
