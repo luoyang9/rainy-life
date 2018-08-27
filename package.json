@@ -9,15 +9,17 @@
     "howler": "^2.0.12",
     "mobx": "^5.0.5",
     "mobx-react": "^5.2.5",
+    "prop-types": "^15.6.2",
     "rc-slider": "^8.6.1",
     "react": "^16.3.2",
     "react-app-rewire-mobx": "^1.0.8",
-    "react-scripts": "1.1.4",
     "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4",
     "react-tabs": "^2.2.2",
     "react-youtube": "^7.6.0"
   },
   "scripts": {
+    "lint": "eslint src/",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-app-rewired start",
@@ -26,6 +28,15 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.6",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.11.1",
+    "prettier": "^1.14.2",
     "react-app-rewired": "^1.5.2"
   }
 }

@@ -1,50 +1,81 @@
 import React, { Component } from 'react';
+import { Howler } from 'howler';
 import Slider from 'rc-slider/lib/Slider';
 import 'rc-slider/assets/index.css';
 import './AudioControl.css';
 
 class AudioControl extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-        volume: this.props.audioManager.getGlobalVolume(),
-        prevVolume: 0
-    }
+      volume: Howler.volume(),
+      prevVolume: 0
+    };
 
-    this.volumeChange = this.volumeChange.bind(this)
-    this.toggleMute = this.toggleMute.bind(this)
+    this.volumeChange = this.volumeChange.bind(this);
+    this.toggleMute = this.toggleMute.bind(this);
   }
 
   volumeChange(vol) {
-    this.props.audioManager.setGlobalVolume(vol / 100)
-    this.setState({volume: this.props.audioManager.getGlobalVolume()})
+    Howler.volume(vol / 100);
+    this.setState({ volume: Howler.volume() });
   }
 
   toggleMute() {
-    if(this.state.volume !== 0) {
-      this.props.audioManager.setGlobalVolume(0)
-      this.setState({volume: 0, prevVolume: this.state.volume})
+    const { volume, prevVolume } = this.state;
+    if (volume !== 0) {
+      Howler.volume(0);
+      this.setState({ volume: 0, prevVolume: volume });
     } else {
-      this.props.audioManager.setGlobalVolume(this.state.prevVolume)
-      this.setState({volume: this.state.prevVolume})
+      Howler.volume(prevVolume);
+      this.setState({ volume: prevVolume });
     }
   }
 
+  renderVolumeIcon(volume) {
+    if (volume > 0.5) {
+      return (
+        <button
+          type="button"
+          onClick={this.toggleMute}
+          className="material-icons AudioControl-volume"
+        >
+          volume_up
+        </button>
+      );
+    }
+    if (volume > 0) {
+      return (
+        <button
+          type="button"
+          style={{ position: 'relative', right: 2 }}
+          onClick={this.toggleMute}
+          className="material-icons AudioControl-volume"
+        >
+          volume_down
+        </button>
+      );
+    }
+    return (
+      <button
+        type="button"
+        onClick={this.toggleMute}
+        className="material-icons AudioControl-volume"
+      >
+        volume_off
+      </button>
+    );
+  }
+
   render() {
+    const { volume } = this.state;
     return (
       <div className="AudioControl">
-        {
-          this.state.volume > 0.5 ? 
-            <i onClick={this.toggleMute} className="material-icons AudioControl-volume">volume_up</i>
-          : this.state.volume > 0 ?
-            <i style={{position: "relative", right: 2}} onClick={this.toggleMute} className="material-icons AudioControl-volume">volume_down</i>
-          : <i onClick={this.toggleMute} className="material-icons AudioControl-volume">volume_off</i>
-        }
-        <Slider className="AudioControl-slider" value={this.state.volume * 100} onChange={this.volumeChange} />
+        {this.renderVolumeIcon(volume)}
+        <Slider className="AudioControl-slider" value={volume * 100} onChange={this.volumeChange} />
       </div>
-    );  
+    );
   }
 }
 

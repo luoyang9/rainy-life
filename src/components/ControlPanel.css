@@ -88,8 +88,11 @@
   cursor: pointer;
   position: relative;
   width: 100%;
-  padding-bottom: 50%;
+  padding: 0 0 50% 0;  
   height: 0;
+  background-color: transparent;
+  outline: none;
+  border: none;
 }
 
 .ControlPanel-thumbnail-title {
@@ -147,6 +150,11 @@
 .ControlPanel-sound-play {
   cursor: pointer;
   margin: 0;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  padding: 0;
+  color: white;
 
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
