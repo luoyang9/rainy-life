@@ -12,8 +12,8 @@
     "rc-slider": "^8.6.1",
     "react": "^16.3.2",
     "react-app-rewire-mobx": "^1.0.8",
+    "react-scripts": "1.1.4",
     "react-dom": "^16.3.2",
-    "react-app-rewired": "1.1.4",
     "react-tabs": "^2.2.2",
     "react-youtube": "^7.6.0"
   },
