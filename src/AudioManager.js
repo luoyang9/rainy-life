@@ -1,9 +1,9 @@
-import { Howl, Howler } from "howler";
+import { Howl } from 'howler';
 
 export default class AudioManager {
   constructor() {
-    this.sounds = {}
-    this.instances = {}
+    this.sounds = {};
+    this.instances = {};
   }
 
   loadClip(clip, callback) {
@@ -25,10 +25,12 @@ export default class AudioManager {
       if (this.sounds[id].playing(this.instances[id])) {
         this.pauseClip(id);
       } else {
-        this.resumeClip(id)
+        this.setClipVolume(id, vol);
+        this.resumeClip(id);
       }
     } else {
-      this.playClip(id)
+      this.setClipVolume(id, vol);
+      this.playClip(id);
     }
   }
 
@@ -53,19 +55,10 @@ export default class AudioManager {
   playPauseGlobal(play) {
     Object.keys(this.instances).forEach(id => {
       if (play) {
-        this.playClip(id)
+        this.playClip(id);
       } else {
-        this.pauseClip(id)
+        this.pauseClip(id);
       }
-    })
+    });
   }
-
-  setGlobalVolume(volume) {
-    Howler.volume(volume);
-  }
-
-  getGlobalVolume() {
-    return Howler.volume();
-  }
-
 }

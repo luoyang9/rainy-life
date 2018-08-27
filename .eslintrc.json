@@ -8,8 +8,15 @@
   ],
   "rules": {
     "prettier/prettier": [
-      "error"
-    ]
+      "warn"
+    ],
+    "no-prototype-builtins": "off",
+    "no-plusplus": "off",
+    "react/jsx-filename-extension": "off"
   },
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true
+  }
 }

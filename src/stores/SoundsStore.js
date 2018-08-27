@@ -13,7 +13,7 @@ export default class SoundsStore {
 
     // Apply cookies
     for (let i = 0; i < soundsJSON.length; i++) {
-      const localVal = localStorage.getItem("Sound " + i)
+      const localVal = localStorage.getItem(`Sound ${i}`);
       if (localVal !== null) {
         this.sounds[i].volume = localVal;
         this.sounds[i].playing = true;
@@ -22,11 +22,13 @@ export default class SoundsStore {
 
     // Apply url params
     urlParams.forEach(param => {
-      const keyVal = param.split("=")
-      if (keyVal[0] === "v") {                                 // Youtube Url ID
-        this.youtubeVideoID = keyVal[1];
-      } else if (keyVal[0] === "s") {                          // Active sounds
-        const volumeArr = keyVal[1].split("s");
+      const keyVal = param.split('=');
+      if (keyVal[0] === 'v') {
+        // Youtube Url ID
+        this.youtubeVideoID = keyVal[1].trim();
+      } else if (keyVal[0] === 's') {
+        // Active sounds
+        const volumeArr = keyVal[1].split('s');
         for (let i = 0; i < soundsJSON.length; i++) {
           const decodedVolume = parseInt(volumeArr[i], 10) / 100.0;
           if (decodedVolume !== 0) {
@@ -50,7 +52,7 @@ export default class SoundsStore {
   @action.bound
   setYoutubeVideoID(id) {
     this.youtubeVideoID = id;
-    localStorage.setItem('youtubeVideoID', id)
+    localStorage.setItem('youtubeVideoID', id);
   }
 
   @action.bound
@@ -58,7 +60,7 @@ export default class SoundsStore {
     this.sounds[id].volume = val / 100;
     this.audioManager.setClipVolume(id, this.sounds[id].volume);
     if (this.sounds[id].playing) {
-      localStorage.setItem("Sound " + id, this.sounds[id].volume)
+      localStorage.setItem(`Sound ${id}`, this.sounds[id].volume);
     }
   }
 
@@ -67,7 +69,7 @@ export default class SoundsStore {
     this.sounds[id].playing = !this.sounds[id].playing;
 
     if (this.sounds[id].loaded) {
-      this.audioManager.toggleClip(id, this.sounds[id].volume)
+      this.audioManager.toggleClip(id, this.sounds[id].volume);
     } else {
       this.audioManager.loadClip(this.sounds[id], () => {
         this.finishLoading(id);
@@ -75,9 +77,9 @@ export default class SoundsStore {
     }
 
     if (this.sounds[id].playing) {
-      localStorage.setItem("Sound " + id, this.sounds[id].volume);
+      localStorage.setItem(`Sound ${id}`, this.sounds[id].volume);
     } else {
-      localStorage.removeItem("Sound " + id);
+      localStorage.removeItem(`Sound ${id}`);
     }
   }
 
