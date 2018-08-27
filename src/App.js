@@ -133,7 +133,7 @@ class App extends Component {
           backgroundsStore={backgroundsStore}
           soundsStore={soundsStore}
         />
-        <AudioControl audioManager={audioManager} />
+        <AudioControl audioManager={audioManager} soundsStore={soundsStore} />
         <AboutPanel className={aboutPanelClass} toggleAbout={this.toggleAbout} />
         <MusicPanel className={musicPanelClass} soundsStore={soundsStore} />
         <ControlPanel

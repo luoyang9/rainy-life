@@ -6,6 +6,12 @@ export default class SoundsStore {
   sounds = soundsJSON.map(sound => Object.assign({ playing: false, loaded: false }, sound));
 
   @observable
+  globallyPausedSounds = [];
+
+  @observable
+  globalPause = true;
+
+  @observable
   youtubeVideoID = '';
 
   constructor(urlParams, audioManager) {
@@ -17,6 +23,7 @@ export default class SoundsStore {
       if (localVal !== null) {
         this.sounds[i].volume = localVal;
         this.sounds[i].playing = true;
+        this.globalPause = false;
       }
     }
 
@@ -34,6 +41,7 @@ export default class SoundsStore {
           if (decodedVolume !== 0) {
             this.sounds[i].volume = decodedVolume;
             this.sounds[i].playing = true;
+            this.globalPause = false;
           }
         }
       }
@@ -46,6 +54,26 @@ export default class SoundsStore {
           this.finishLoading(this.sounds[i].id);
         });
       }
+    }
+  }
+
+  @action.bound
+  toggleGlobalPause() {
+    this.globalPause = !this.globalPause;
+
+    if (this.globalPause) {
+      this.globallyPausedSounds = Object.keys(this.audioManager.instances).filter(
+        id => this.sounds[id].playing
+      );
+      this.globallyPausedSounds.forEach(id => {
+        this.sounds[id].playing = false;
+      });
+      this.audioManager.pauseAll();
+    } else {
+      this.audioManager.resumeAll(this.globallyPausedSounds);
+      this.globallyPausedSounds.forEach(id => {
+        this.sounds[id].playing = true;
+      });
     }
   }
 
@@ -77,9 +105,19 @@ export default class SoundsStore {
     }
 
     if (this.sounds[id].playing) {
+      if (this.globalPause) {
+        this.globalPause = false;
+        this.globallyPausedSounds.forEach(oldId => {
+          localStorage.removeItem(`Sound ${oldId}`);
+        });
+        this.globallyPausedSounds = [id];
+      }
       localStorage.setItem(`Sound ${id}`, this.sounds[id].volume);
     } else {
       localStorage.removeItem(`Sound ${id}`);
+      if (this.sounds.filter(sound => sound.playing).length === 0) {
+        this.globalPause = true;
+      }
     }
   }
 

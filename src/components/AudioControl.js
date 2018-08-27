@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { observer } from 'mobx-react';
 import { Howler } from 'howler';
 import Slider from 'rc-slider/lib/Slider';
 import 'rc-slider/assets/index.css';
 import './AudioControl.css';
 
+@observer
 class AudioControl extends Component {
   constructor(props) {
     super(props);
@@ -31,6 +34,19 @@ class AudioControl extends Component {
       Howler.volume(prevVolume);
       this.setState({ volume: prevVolume });
     }
+  }
+
+  renderPlayIcon() {
+    const { soundsStore } = this.props;
+    return (
+      <button
+        type="button"
+        onClick={() => soundsStore.toggleGlobalPause()}
+        className="material-icons AudioControl-play"
+      >
+        {soundsStore.globalPause ? 'play_arrow' : 'pause'}
+      </button>
+    );
   }
 
   renderVolumeIcon(volume) {
@@ -72,11 +88,16 @@ class AudioControl extends Component {
     const { volume } = this.state;
     return (
       <div className="AudioControl">
+        {this.renderPlayIcon()}
         {this.renderVolumeIcon(volume)}
         <Slider className="AudioControl-slider" value={volume * 100} onChange={this.volumeChange} />
       </div>
     );
   }
 }
+
+AudioControl.propTypes = {
+  soundsStore: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
+};
 
 export default AudioControl;

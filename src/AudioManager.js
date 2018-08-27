@@ -61,4 +61,16 @@ export default class AudioManager {
       }
     });
   }
+
+  pauseAll() {
+    Object.keys(this.instances).forEach(id => {
+      this.pauseClip(id);
+    });
+  }
+
+  resumeAll(ids) {
+    ids.forEach(id => {
+      this.resumeClip(id);
+    });
+  }
 }
