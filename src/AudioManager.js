@@ -1,13 +1,13 @@
 import { Howl, Howler } from "howler";
 
-export default class AudioManager { 
+export default class AudioManager {
   constructor() {
     this.sounds = {}
     this.instances = {}
   }
 
   loadClip(clip, callback) {
-    if(!this.sounds.hasOwnProperty(clip.id)) {
+    if (!this.sounds.hasOwnProperty(clip.id)) {
       this.sounds[clip.id] = new Howl({
         src: [clip.src],
         loop: true,
@@ -21,8 +21,8 @@ export default class AudioManager {
   }
 
   toggleClip(id, vol) {
-    if(this.instances.hasOwnProperty(id)) {
-      if(this.sounds[id].playing(this.instances[id])) {
+    if (this.instances.hasOwnProperty(id)) {
+      if (this.sounds[id].playing(this.instances[id])) {
         this.pauseClip(id);
       } else {
         this.resumeClip(id)
@@ -37,7 +37,7 @@ export default class AudioManager {
   }
 
   setClipVolume(id, vol) {
-    if(this.sounds.hasOwnProperty(id)) {
+    if (this.sounds.hasOwnProperty(id)) {
       this.sounds[id].volume(vol, this.instances[id]);
     }
   }
@@ -52,7 +52,7 @@ export default class AudioManager {
 
   playPauseGlobal(play) {
     Object.keys(this.instances).forEach(id => {
-      if(play) {
+      if (play) {
         this.playClip(id)
       } else {
         this.pauseClip(id)

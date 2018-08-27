@@ -25,7 +25,7 @@ class AboutPanel extends Component {
           <p className="AboutPanel-footer">built with <span className="AboutPanel-heart">♥</span> by <a href="https://charliezhang.me" target="_blank" rel="noopener noreferrer">charlie</a></p>
         </div>
       </div>
-    );  
+    );
   }
 }
 

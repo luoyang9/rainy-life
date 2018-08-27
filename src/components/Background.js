@@ -11,15 +11,15 @@ class Background extends Component {
       <div>
         {
           store.backgrounds.length > 0 && store.backgrounds.map(background => {
-            return <PreloadImage key={background.id} 
-              srcPreload={background.thumbnailURL} 
+            return <PreloadImage key={background.id}
+              srcPreload={background.thumbnailURL}
               srcLoaded={background.backgroundURL}
-              className={store.activeBackground === background.id && !store.customBackgroundUrl ? "Background Background-show" : "Background"} 
+              className={store.activeBackground === background.id && !store.customBackgroundUrl ? "Background Background-show" : "Background"}
             />
           })
         }
-        <div 
-          className={store.customBackgroundUrl ? "Background Background-show" : "Background"} 
+        <div
+          className={store.customBackgroundUrl ? "Background Background-show" : "Background"}
           style={{
             backgroundImage: `url(${store.customBackgroundUrl})`,
             backgroundPosition: "center",
@@ -28,7 +28,7 @@ class Background extends Component {
           }}>
         </div>
       </div>
-    );  
+    );
   }
 }
 

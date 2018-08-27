@@ -9,7 +9,7 @@ class PreloadImage extends Component {
   }
 
   componentDidMount() {
-        
+
     const loaderImg = new Image();
 
     loaderImg.src = this.props.srcLoaded;
@@ -30,13 +30,13 @@ class PreloadImage extends Component {
   render() {
     return (
       <div className={"PreloadImage-container " + this.props.className}>
-        <div 
-          className="PreloadImage-loaded" 
+        <div
+          className="PreloadImage-loaded"
           ref={imageLoadedElem => this.imageHD = imageLoadedElem}>
         </div>
-        <div 
-          className="PreloadImage-preload" 
-          style={{ 
+        <div
+          className="PreloadImage-preload"
+          style={{
             backgroundImage: `url('${this.props.srcPreload}')`,
             backgroundPosition: "center",
             backgroundSize: "cover",

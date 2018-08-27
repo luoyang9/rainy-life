@@ -9,8 +9,8 @@ class AudioControl extends Component {
     super(props)
 
     this.state = {
-        volume: this.props.audioManager.getGlobalVolume(),
-        prevVolume: 0
+      volume: this.props.audioManager.getGlobalVolume(),
+      prevVolume: 0
     }
 
     this.volumeChange = this.volumeChange.bind(this)
@@ -19,16 +19,16 @@ class AudioControl extends Component {
 
   volumeChange(vol) {
     this.props.audioManager.setGlobalVolume(vol / 100)
-    this.setState({volume: this.props.audioManager.getGlobalVolume()})
+    this.setState({ volume: this.props.audioManager.getGlobalVolume() })
   }
 
   toggleMute() {
-    if(this.state.volume !== 0) {
+    if (this.state.volume !== 0) {
       this.props.audioManager.setGlobalVolume(0)
-      this.setState({volume: 0, prevVolume: this.state.volume})
+      this.setState({ volume: 0, prevVolume: this.state.volume })
     } else {
       this.props.audioManager.setGlobalVolume(this.state.prevVolume)
-      this.setState({volume: this.state.prevVolume})
+      this.setState({ volume: this.state.prevVolume })
     }
   }
 
@@ -36,15 +36,15 @@ class AudioControl extends Component {
     return (
       <div className="AudioControl">
         {
-          this.state.volume > 0.5 ? 
+          this.state.volume > 0.5 ?
             <i onClick={this.toggleMute} className="material-icons AudioControl-volume">volume_up</i>
-          : this.state.volume > 0 ?
-            <i style={{position: "relative", right: 2}} onClick={this.toggleMute} className="material-icons AudioControl-volume">volume_down</i>
-          : <i onClick={this.toggleMute} className="material-icons AudioControl-volume">volume_off</i>
+            : this.state.volume > 0 ?
+              <i style={{ position: "relative", right: 2 }} onClick={this.toggleMute} className="material-icons AudioControl-volume">volume_down</i>
+              : <i onClick={this.toggleMute} className="material-icons AudioControl-volume">volume_off</i>
         }
         <Slider className="AudioControl-slider" value={this.state.volume * 100} onChange={this.volumeChange} />
       </div>
-    );  
+    );
   }
 }
 

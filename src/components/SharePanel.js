@@ -28,25 +28,25 @@ class SharePanel extends Component {
     let soundsStore = props.soundsStore;
     let backgroundsStore = props.backgroundsStore;
 
-    if(soundsStore.youtubeVideoID) {
+    if (soundsStore.youtubeVideoID) {
       urlParams.push("v=" + soundsStore.youtubeVideoID)
     }
-    
+
     const soundParam = []
-    for(let i = 0; i < soundsStore.sounds.length; i++) {
+    for (let i = 0; i < soundsStore.sounds.length; i++) {
       const sound = soundsStore.sounds[i];
       soundParam[sound.id] = sound.playing ? sound.volume : 0;
     }
     urlParams.push("s=" + soundParam.join("s"))
-    
-    if(backgroundsStore.customBackgroundUrl) {
+
+    if (backgroundsStore.customBackgroundUrl) {
       urlParams.push("u=" + encodeURIComponent(backgroundsStore.customBackgroundUrl));
-    } else if(backgroundsStore.activeBackground !== null) {
+    } else if (backgroundsStore.activeBackground !== null) {
       urlParams.push("b=" + backgroundsStore.activeBackground);
     }
 
     shareURL += urlParams.join("&")
-    this.setState({shareURL: shareURL})
+    this.setState({ shareURL: shareURL })
   }
 
   render() {
@@ -54,9 +54,9 @@ class SharePanel extends Component {
 
     return (
       <div className={"SharePanel " + className}>
-       <p id="SharePanelURL" data-clipboard-target="#SharePanelURL">{this.state.shareURL}</p>
+        <p id="SharePanelURL" data-clipboard-target="#SharePanelURL">{this.state.shareURL}</p>
       </div>
-    );  
+    );
   }
 }
 
