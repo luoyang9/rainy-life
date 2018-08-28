@@ -19,12 +19,33 @@ const AboutPanel = props => {
         <p className="AboutPanel-feature">
           click
           <i className="material-icons">&nbsp;settings&nbsp;</i>
-          to set sounds/backgrounds.
+          to open the control panel and set sounds/backgrounds.
         </p>
         <p className="AboutPanel-feature">
           click
           <i className="material-icons">&nbsp;library_music&nbsp;</i>
-          to set music.
+          to open the music panel and set music.
+        </p>
+        <p className="AboutPanel-subheader">keyboard shortcuts</p>
+        <p className="AboutPanel-feature">
+          <span>spacebar:&nbsp;</span>
+          global play/pause
+        </p>
+        <p className="AboutPanel-feature">
+          <span>c:&nbsp;</span>
+          control panel
+        </p>
+        <p className="AboutPanel-feature">
+          <span>m:&nbsp;</span>
+          music panel
+        </p>
+        <p className="AboutPanel-feature">
+          <span>a:&nbsp;</span>
+          about panel
+        </p>
+        <p className="AboutPanel-feature">
+          <span>s:&nbsp;</span>
+          share panel
         </p>
         <h3 className="AboutPanel-subheader">features</h3>
         <p className="AboutPanel-feature">

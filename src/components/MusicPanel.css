@@ -11,7 +11,7 @@
   max-width: 550px;
   border-radius: 3px;
   opacity: 0;
-  pointer-events: none;
+  visibility: hidden;
 
   -webkit-transform: translateY(-10px);
       -ms-transform: translateY(-10px);
@@ -22,7 +22,7 @@
 
 .MusicPanel-show {
   opacity: 1;
-  pointer-events: all;
+  visibility: visible;
   
   -webkit-transform: translateY(0px);
       -ms-transform: translateY(0px);
