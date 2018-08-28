@@ -41,10 +41,33 @@ class App extends Component {
       musicIconClass: ''
     };
 
+    this.handleKeyboardShortcuts = this.handleKeyboardShortcuts.bind(this);
     this.toggleSettings = this.toggleSettings.bind(this);
     this.toggleMusic = this.toggleMusic.bind(this);
     this.toggleAbout = this.toggleAbout.bind(this);
     this.toggleShare = this.toggleShare.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyboardShortcuts);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyboardShortcuts);
+  }
+
+  handleKeyboardShortcuts(evt) {
+    if (evt.keyCode === 32) {
+      soundsStore.toggleGlobalPause();
+    } else if (evt.keyCode === 67) {
+      this.toggleSettings();
+    } else if (evt.keyCode === 77) {
+      this.toggleMusic();
+    } else if (evt.keyCode === 65) {
+      this.toggleAbout();
+    } else if (evt.keyCode === 83) {
+      this.toggleShare();
+    }
   }
 
   toggleSettings() {
@@ -104,8 +127,13 @@ class App extends Component {
         <button type="button" className="material-icons App-share" onClick={this.toggleShare}>
           share
         </button>
-        <a href="https://twitter.com/rainydotlife" target="_blank" rel="noopener noreferrer">
-          <svg className="App-twitter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <a
+          className="App-twitter"
+          href="https://twitter.com/rainydotlife"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <path
               id="twitter"
               fill="white"

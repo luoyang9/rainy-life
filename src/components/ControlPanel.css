@@ -11,7 +11,7 @@
   max-width: 550px;
   border-radius: 3px;
   opacity: 0;
-  pointer-events: none;
+  visibility: hidden;
 
   -webkit-transform: translateY(10px);
       -ms-transform: translateY(10px);
@@ -21,8 +21,8 @@
 }
 
 .ControlPanel-show {
+  visibility: visible;
   opacity: 1;
-  pointer-events: all;
   
   -webkit-transform: translateY(0px);
       -ms-transform: translateY(0px);
@@ -91,7 +91,6 @@
   padding: 0 0 50% 0;  
   height: 0;
   background-color: transparent;
-  outline: none;
   border: none;
 }
 
@@ -151,7 +150,6 @@
   cursor: pointer;
   margin: 0;
   background-color: transparent;
-  outline: none;
   border: none;
   padding: 0;
   color: white;
@@ -206,10 +204,6 @@
 .react-tabs__tab--selected {
   color: white;
   border-radius: 5px 5px 0 0;
-}
-
-.react-tabs__tab:focus {
-  outline: none;
 }
 
 .react-tabs__tab-panel {

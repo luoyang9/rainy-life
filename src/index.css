@@ -21,11 +21,9 @@ input[type=text] {
   border: 0;
   border-bottom: 1px solid white;
   color: white;
-  outline: 0;
 }
 
 button {
-  outline: 0;
   padding: 8px;
   cursor: pointer;
 }

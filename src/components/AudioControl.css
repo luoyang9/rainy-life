@@ -19,7 +19,6 @@
     font-size: 25px;
     display: inline-block;
     background-color: transparent;
-    outline: none;
     border: none;
     padding: 0;
     color: white;
@@ -29,9 +28,9 @@
     font-size: 27px;
     display: inline-block;
     background-color: transparent;
-    outline: none;
     border: none;
-    padding: 0 5px 0 0;
+    padding: 0;
+    margin-right: 5px;
     color: white;
 }
 
