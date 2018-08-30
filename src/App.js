@@ -57,16 +57,18 @@ class App extends Component {
   }
 
   handleKeyboardShortcuts(evt) {
-    if (evt.keyCode === 32) {
-      soundsStore.toggleGlobalPause();
-    } else if (evt.keyCode === 67) {
-      this.toggleSettings();
-    } else if (evt.keyCode === 77) {
-      this.toggleMusic();
-    } else if (evt.keyCode === 65) {
-      this.toggleAbout();
-    } else if (evt.keyCode === 83) {
-      this.toggleShare();
+    if (!evt.ctrlKey) {
+      if (evt.keyCode === 32) {
+        soundsStore.toggleGlobalPause();
+      } else if (evt.keyCode === 67) {
+        this.toggleSettings();
+      } else if (evt.keyCode === 77) {
+        this.toggleMusic();
+      } else if (evt.keyCode === 65) {
+        this.toggleAbout();
+      } else if (evt.keyCode === 83) {
+        this.toggleShare();
+      }
     }
   }
 
