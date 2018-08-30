@@ -26,6 +26,10 @@ export default class SoundsStore {
         this.globalPause = false;
       }
     }
+    const localVal = localStorage.getItem('youtubeVideoID');
+    if (localVal !== null) {
+      this.youtubeVideoID = localVal;
+    }
 
     // Apply url params
     urlParams.forEach(param => {

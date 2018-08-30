@@ -23,7 +23,6 @@ class MusicPanel extends Component {
       youtubeOptions: {
         playerVars: {
           // https://developers.google.com/youtube/player_parameters
-          autoplay: soundsStore.youtubeVideoID ? 1 : 0,
           loop: 1,
           playsinline: 1
         }
@@ -47,6 +46,7 @@ class MusicPanel extends Component {
 
   submitVideoID() {
     const { youtubeVideoIDInput, youtubeOptions } = this.state;
+    const { soundsStore } = this.props;
     let input = youtubeVideoIDInput.trim();
     if (input === '') {
       this.setState({ youtubeError: 'please enter a youtube video url' });
@@ -77,7 +77,7 @@ class MusicPanel extends Component {
 
     youtubeOptions.playerVars.autoplay = 1;
     this.setState({ youtubeError: '', youtubeOptions });
-    this.soundsStore.setYoutubeVideoID(videoId);
+    soundsStore.setYoutubeVideoID(videoId);
   }
 
   render() {
